@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Exception\RouteNotFoundException;
 class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerator
 {
     static private $declaredRouteNames = array(
-       '_welcome' => true,
        '_demo_login' => true,
        '_security_check' => true,
        '_demo_logout' => true,
@@ -33,6 +32,7 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_home' => true,
        '_configurator_step' => true,
        '_configurator_final' => true,
+       'BloggerBlogBundle_homepage' => true,
     );
 
     /**
@@ -54,11 +54,6 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         list($variables, $defaults, $requirements, $tokens) = $this->{'get'.$escapedName.'RouteInfo'}();
 
         return $this->doGenerate($variables, $defaults, $requirements, $tokens, $parameters, $name, $absolute);
-    }
-
-    private function get_welcomeRouteInfo()
-    {
-        return array(array (), array (  '_controller' => 'Acme\\DemoBundle\\Controller\\WelcomeController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
     }
 
     private function get_demo_loginRouteInfo()
@@ -154,5 +149,10 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
     private function get_configurator_finalRouteInfo()
     {
         return array(array (), array (  '_controller' => 'Sensio\\Bundle\\DistributionBundle\\Controller\\ConfiguratorController::finalAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/_configurator/final',  ),));
+    }
+
+    private function getBloggerBlogBundle_homepageRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Blogger\\BlogBundle\\Controller\\PageController::indexAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
     }
 }

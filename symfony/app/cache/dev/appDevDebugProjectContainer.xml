@@ -17,6 +17,7 @@
       <parameter key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="JMSSecurityExtraBundle">JMS\SecurityExtraBundle\JMSSecurityExtraBundle</parameter>
+      <parameter key="BloggerBlogBundle">Blogger\BlogBundle\BloggerBlogBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -1909,6 +1910,33 @@
                   <argument type="service" id="templating.loader"/>
                   <argument>JMSSecurityExtraBundle</argument>
                   <argument>C:\xampp\htdocs\IronMaidens\Symfony\vendor\bundles\JMS\SecurityExtraBundle/Resources/views</argument>
+                  <argument>/^[^.]+\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>BloggerBlogBundle</argument>
+                  <argument>C:\xampp\htdocs\IronMaidens\Symfony\app/Resources/BloggerBlogBundle/views</argument>
+                  <argument>/^[^.]+\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>BloggerBlogBundle</argument>
+                  <argument>C:\xampp\htdocs\IronMaidens\Symfony\src\Blogger\BlogBundle/Resources/views</argument>
                   <argument>/^[^.]+\.[^.]+\.twig$/</argument>
                 </service>
               </argument>
