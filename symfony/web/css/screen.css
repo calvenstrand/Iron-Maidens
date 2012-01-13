@@ -7,6 +7,15 @@ body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 #wrapper a { text-decoration: none; color: #F48A00; }
 #wrapper span.highlight { color: #F48A00; }
 
+#mainGameWrapper { width: 616px; height: 616px; border: 1px solid black; margin: 20px auto 0px auto; }
+#gameWrapper { width: 600px; height: 600px; float: right; }
+#numberWrapper { width: 15px; height: 600px; border-right: 1px solid black; float: left; }
+#letterWrapper { width: 600px; height: 15px; border-top: 1px solid black; float: right; }
+.gameBox1 { width: 75px; height: 75px; background: #FFF; float: left; }
+.gameBox2 { width: 75px; height: 75px; background: #000; float: left; }
+.numberBox { width: 15px; height: 45px; margin-top: 30px; text-align: center; float: left; }
+.letterBox { width: 75px; height: 10px; text-align: center; float: left; }
+
 #header { border-bottom: 1px solid #ccc; margin-bottom: 20px; }
 #header .top { border-bottom: 1px solid #ccc; margin-bottom: 10px; }
 #header ul.navigation { list-style: none; text-align: right; }
