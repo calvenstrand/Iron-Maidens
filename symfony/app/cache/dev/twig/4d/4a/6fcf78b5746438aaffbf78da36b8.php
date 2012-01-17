@@ -154,12 +154,15 @@ class __TwigTemplate_4d4a6fcf78b5746438aaffbf78da36b8 extends Twig_Template
 \t\t\t</div>
 \t\t
 \t\t</div>
+\t\t<form>
+\t\t\t<input type=\"submit\" value=\"Starta!\">
+\t\t</form>
 \t
 
         ";
-        // line 136
+        // line 139
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 137
+        // line 140
         echo "    </body>
 </html>";
     }
@@ -183,7 +186,7 @@ class __TwigTemplate_4d4a6fcf78b5746438aaffbf78da36b8 extends Twig_Template
         ";
     }
 
-    // line 136
+    // line 139
     public function block_javascripts($context, array $blocks = array())
     {
     }

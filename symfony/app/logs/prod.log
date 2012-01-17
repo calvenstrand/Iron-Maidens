@@ -1,0 +1,1 @@
+[2012-01-17 10:25:32] request.ERROR: Symfony\Component\HttpKernel\Exception\NotFoundHttpException: No route found for "GET /iron-maidens/symfony/web/" (uncaught exception) at C:\xampp\htdocs\Iron-Maidens\symfony\vendor\symfony\src\Symfony\Bundle\FrameworkBundle\EventListener\RouterListener.php line 83 [] []
