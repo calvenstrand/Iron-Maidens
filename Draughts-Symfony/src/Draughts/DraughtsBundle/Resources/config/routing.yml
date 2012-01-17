@@ -1,0 +1,10 @@
+DraughtsBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: DraughtsBundle:Default:index }
+
+# src/Draughts/DraughtsBundle/Resources/config/routing.yml
+DraughtsBundle_homepage:
+    pattern:  /
+    defaults: { _controller: DraughtsBundle:Page:index }
+    requirements:
+        _method:  GET
