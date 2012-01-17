@@ -152,8 +152,8 @@ class __TwigTemplate_d73b4aa935efe75aa30839781d0c0f7b extends Twig_Template
         // line 122
         echo "  \t\t
 \t\t\t<input id=\"startBtn\" type=\"submit\" value=\"Starta!\">
-\t\t
-  ";
+\t\techo \"hej\";
+\t\t  ";
     }
 
     // line 127
