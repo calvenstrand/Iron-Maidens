@@ -10,6 +10,8 @@ class __TwigTemplate_4d4a6fcf78b5746438aaffbf78da36b8 extends Twig_Template
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'stylesheets' => array($this, 'block_stylesheets'),
+            'body' => array($this, 'block_body'),
+            'form' => array($this, 'block_form'),
             'javascripts' => array($this, 'block_javascripts'),
         );
     }
@@ -40,126 +42,22 @@ class __TwigTemplate_4d4a6fcf78b5746438aaffbf78da36b8 extends Twig_Template
     <body>
 \t
 \t\t<div id=\"mainGameWrapper\">
-\t\t
-\t\t\t<div id=\"numberWrapper\">
-\t\t\t\t<div class=\"numberBox\">8</div>
-\t\t\t\t<div class=\"numberBox\">7</div>
-\t\t\t\t<div class=\"numberBox\">6</div>
-\t\t\t\t<div class=\"numberBox\">5</div>
-\t\t\t\t<div class=\"numberBox\">4</div>
-\t\t\t\t<div class=\"numberBox\">3</div>
-\t\t\t\t<div class=\"numberBox\">2</div>
-\t\t\t\t<div class=\"numberBox\">1</div>
-\t\t\t</div>
-\t\t\t
-\t\t\t<div id=\"gameWrapper\">
-\t\t\t
-\t\t\t\t<!-- Rad 1 -->
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t
-\t\t\t\t<!-- Rad 2 -->
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t
-\t\t\t\t<!-- Rad 3 -->
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t
-\t\t\t\t<!-- Rad 4 -->
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t
-\t\t\t\t<!-- Rad 5 -->
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t
-\t\t\t\t<!-- Rad 6 -->
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t
-\t\t\t\t<!-- Rad 7 -->
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t
-\t\t\t\t<!-- Rad 8 -->
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t<div class=\"gameBox2\"></div>
-\t\t\t\t<div class=\"gameBox1\"></div>
-\t\t\t\t
-\t\t\t\t
-\t\t\t\t
-\t\t\t\t
-\t\t\t</div>
-\t\t\t
-\t\t\t<div id=\"letterWrapper\">
-\t\t\t
-\t\t\t\t<!-- Rad 9 -->
-\t\t\t\t<div class=\"letterBox\">a</div>
-\t\t\t\t<div class=\"letterBox\">b</div>
-\t\t\t\t<div class=\"letterBox\">c</div>
-\t\t\t\t<div class=\"letterBox\">d</div>
-\t\t\t\t<div class=\"letterBox\">e</div>
-\t\t\t\t<div class=\"letterBox\">f</div>
-\t\t\t\t<div class=\"letterBox\">g</div>
-\t\t\t\t<div class=\"letterBox\">h</div>
-\t\t\t\t
-\t\t\t</div>
-\t\t
+\t\t";
+        // line 20
+        $this->displayBlock('body', $context, $blocks);
+        // line 21
+        echo "\t\t\t
 \t\t</div>
-\t
+\t\t";
+        // line 23
+        $this->displayBlock('form', $context, $blocks);
+        // line 24
+        echo "\t
 
         ";
-        // line 136
+        // line 26
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 137
+        // line 29
         echo "    </body>
 </html>";
     }
@@ -183,9 +81,23 @@ class __TwigTemplate_4d4a6fcf78b5746438aaffbf78da36b8 extends Twig_Template
         ";
     }
 
-    // line 136
+    // line 20
+    public function block_body($context, array $blocks = array())
+    {
+        echo " ";
+    }
+
+    // line 23
+    public function block_form($context, array $blocks = array())
+    {
+    }
+
+    // line 26
     public function block_javascripts($context, array $blocks = array())
     {
+        echo " 
+        
+        ";
     }
 
     public function getTemplateName()

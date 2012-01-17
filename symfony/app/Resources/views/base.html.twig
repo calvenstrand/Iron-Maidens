@@ -17,122 +17,14 @@
     <body>
 	
 		<div id="mainGameWrapper">
-		
-			<div id="numberWrapper">
-				<div class="numberBox">8</div>
-				<div class="numberBox">7</div>
-				<div class="numberBox">6</div>
-				<div class="numberBox">5</div>
-				<div class="numberBox">4</div>
-				<div class="numberBox">3</div>
-				<div class="numberBox">2</div>
-				<div class="numberBox">1</div>
-			</div>
+		{% block body %} {% endblock %}
 			
-			<div id="gameWrapper">
-			
-				<!-- Rad 1 -->
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				
-				<!-- Rad 2 -->
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				
-				<!-- Rad 3 -->
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				
-				<!-- Rad 4 -->
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				
-				<!-- Rad 5 -->
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				
-				<!-- Rad 6 -->
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				
-				<!-- Rad 7 -->
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				
-				<!-- Rad 8 -->
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				<div class="gameBox2"></div>
-				<div class="gameBox1"></div>
-				
-				
-				
-				
-			</div>
-			
-			<div id="letterWrapper">
-			
-				<!-- Rad 9 -->
-				<div class="letterBox">a</div>
-				<div class="letterBox">b</div>
-				<div class="letterBox">c</div>
-				<div class="letterBox">d</div>
-				<div class="letterBox">e</div>
-				<div class="letterBox">f</div>
-				<div class="letterBox">g</div>
-				<div class="letterBox">h</div>
-				
-			</div>
-		
 		</div>
+		{% block form %}{% endblock %}
 	
 
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %} 
+        
+        {% endblock %}
     </body>
 </html>

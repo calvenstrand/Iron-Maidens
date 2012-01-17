@@ -337,7 +337,7 @@
     <parameter key="assetic.enable_profiler">false</parameter>
     <parameter key="assetic.read_from">C:\xampp\htdocs\Iron-Maidens\symfony\app/../web</parameter>
     <parameter key="assetic.write_to">C:\xampp\htdocs\Iron-Maidens\symfony\app/../web</parameter>
-    <parameter key="assetic.java.bin">/usr/bin/java</parameter>
+    <parameter key="assetic.java.bin">C:\Windows\system32\java.EXE</parameter>
     <parameter key="assetic.node.bin">/usr/bin/node</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
