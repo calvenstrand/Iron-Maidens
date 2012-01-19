@@ -15,12 +15,10 @@
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-		
-		<div id="header">
-			<hgroup>
-		    <h2>{% block blog_title %}Draught spel{% endblock %}</h2>
-		    <h3>{% block blog_tagline %}Skapad av  Iron Maiden{% endblock %}</h3>
-			</hgroup>
+		<div class="headerwrapper">
+			<div id="header">
+			    	<img src="img/headerimg.png">
+			</div>
 		</div>
 		<div id="mainGameWrapper">
 		{% block body %} {% endblock %}
