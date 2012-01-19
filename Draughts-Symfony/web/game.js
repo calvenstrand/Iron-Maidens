@@ -42,7 +42,7 @@ function select1(){
 	 $(this).unbind("click");
 	 
 	 //Mustesta flytta
-	 $(this'>div').appendTo( $('#56') );
+	 $(this'>div').appendTo( $('#56');
 	 
 	 $(this).bind("click", select1);
 	}
