@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
-        <title>{% block title %}symblog{% endblock %} - symblog</title>
+        <title>{% block title %}Draught spel{% endblock %} - symblog</title>
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -15,7 +15,11 @@
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-	
+		<div class="headerwrapper">
+			<div id="header">
+			    	<img src="img/headerimg.png">
+			</div>
+		</div>
 		<div id="mainGameWrapper">
 		{% block body %} {% endblock %}
 			

@@ -1,6 +1,6 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
 
-body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px; width: 100%; height: 100%; color: #000; font-size: 14px; }
+body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px; width: 100%; height: 100%; color: #000; font-size: 14px; background: url("../img/mainbg.png") }
 .clear { clear: both; }
 
 #wrapper { margin: 10px auto; width: 1000px; }
@@ -9,32 +9,30 @@ body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 
 /*CSS för spelpjäser*/
 .playerToken1 {
-	margin-left: 12.5px;
-	margin-top: 12.5px;
-	width: 50px;
-	height: 50px;
+	width: 75px;
+	height: 75px;
 	border-radius: 90px;
-	background-color: #F48A00;
+	background: url("../img/playerToken1.png");
 }
 .playerToken2 {
-	margin-left: 12.5px;
-	margin-top: 12.5px;
-	width: 50px;
-	height: 50px;
+	width: 75px;
+	height: 75px;
 	border-radius: 90px;
-	background-color: #0000FF;
+	background: url("../img/playerToken2.png");
 }
 
-#mainGameWrapper { width: 616px; height: 616px; border: 1px solid black; margin: 20px auto 0px auto; }
-#gameWrapper { width: 600px; height: 600px; float: right; }
+#mainGameWrapper { width: 616px; height: 616px; border: 1px solid black; margin: 20px auto 0px auto; background-color: #fff;}
+#gameWrapper { width: 600px; height: 600px; float: right; background: url("../img/boardbg.png") }
 #numberWrapper { width: 15px; height: 600px; border-right: 1px solid black; float: left; }
 #letterWrapper { width: 600px; height: 15px; border-top: 1px solid black; float: right; }
-.gameBox1 { width: 75px; height: 75px; background: #FFF; float: left; }
-.gameBox2 { width: 75px; height: 75px; background: #000; float: left; }
+.gameBox1 { width: 75px; height: 75px; float: left; }
+.gameBox2 { width: 75px; height: 75px; float: left; }
 .numberBox { width: 15px; height: 45px; margin-top: 30px; text-align: center; float: left; }
 .letterBox { width: 75px; height: 10px; text-align: center; float: left; }
 
-#header { border-bottom: 1px solid #ccc; margin-bottom: 20px; }
+.headerwrapper{ border-bottom: 1px solid #ccc; margin-bottom:10px; background:#fff; height:auto; width:auto; -moz-box-shadow: 5px  5px  14px  #000000; -webkit-box-shadow: 5px  5px  14px  #000000; box-shadow: 5px  5px  14px  #000000; }
+
+#header {height:120px; width:550px; margin: 0 auto; }
 #header .top { border-bottom: 1px solid #ccc; margin-bottom: 10px; }
 #header ul.navigation { list-style: none; text-align: right; }
 #header .navigation li { display: inline }

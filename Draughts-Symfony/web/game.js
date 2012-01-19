@@ -37,8 +37,47 @@ if(current_player == 0){
 	var disableP2 = $('.playerToken2').parent();
 	
 	
+<<<<<<< HEAD
 	
 	$(disableP2).each(function(i) {
+=======
+	var target = $(this).attr("id");
+	 console.log(target);
+	 var thisTarget = ('#' + target);
+	 
+	 // var $target3 = $(event.target3);
+  //if ( $target3.is("li") ) {
+   // $target.css("background-color", "red");
+  //}
+	 
+	 
+	 if(divIsWhite = true){ 
+	 	var divIsWhite = $(thisTarget).css('background', '#FFF');
+	 	
+	 	console.log(' vit sannsSANN!1');
+	 console.log('vit från början');
+	 $(thisTarget).css('background', 'red');
+		$(thisTarget).unbind("click");
+		$(thisTarget).bind("click", select2); 
+	}	
+	}
+	function select2(){
+	if(divIsRed = true){ 
+		var divIsRed = $(thisTarget).css('background', 'red');
+		
+	 	
+	 	console.log('röd SANN!1');
+	 console.log('vit från början');
+	 $(this).css('background', '#FFF');
+	 $(this).unbind("click");
+	 
+	 //Mustesta flytta
+	 $(this'>div').appendTo( $('#56');
+	 
+	 $(this).bind("click", select1);
+	}
+	}
+>>>>>>> 542e6cf3428c90b01c6ac07dd1a543eeee3dc1ef
 
 		//$(this).attr('id', 'playerToken1' + (i + 1));
 		console.log((i + 1) + 'disabled');
