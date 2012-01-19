@@ -40,24 +40,28 @@ class __TwigTemplate_a577a25532da6bbae7056ddf108c6ed1 extends Twig_Template
         echo "\" />
     </head>
     <body>
-\t
+\t\t<div class=\"headerwrapper\">
+\t\t\t<div id=\"header\">
+\t\t\t    \t<img src=\"img/headerimg.png\">
+\t\t\t</div>
+\t\t</div>
 \t\t<div id=\"mainGameWrapper\">
 \t\t";
-        // line 20
+        // line 24
         $this->displayBlock('body', $context, $blocks);
-        // line 21
+        // line 25
         echo "\t\t\t
 \t\t</div>
 \t\t";
-        // line 23
+        // line 27
         $this->displayBlock('form', $context, $blocks);
-        // line 24
+        // line 28
         echo "\t
 
         ";
-        // line 26
+        // line 30
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 29
+        // line 33
         echo "    </body>
 </html>";
     }
@@ -65,7 +69,7 @@ class __TwigTemplate_a577a25532da6bbae7056ddf108c6ed1 extends Twig_Template
     // line 6
     public function block_title($context, array $blocks = array())
     {
-        echo "symblog";
+        echo "Draught spel";
     }
 
     // line 10
@@ -81,18 +85,18 @@ class __TwigTemplate_a577a25532da6bbae7056ddf108c6ed1 extends Twig_Template
         ";
     }
 
-    // line 20
+    // line 24
     public function block_body($context, array $blocks = array())
     {
         echo " ";
     }
 
-    // line 23
+    // line 27
     public function block_form($context, array $blocks = array())
     {
     }
 
-    // line 26
+    // line 30
     public function block_javascripts($context, array $blocks = array())
     {
         echo " 
