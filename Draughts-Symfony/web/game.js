@@ -32,6 +32,15 @@ var current_player = 0;
 
 
 
+/*
+  Funderingar kring fest funktionen:
+  1. Fixa så att alla ens egna boxar också är disabled när man har en rödmarkerad pjäs
+  1.1: Disabla ALLA där det finns tokens 1 eller 2 istället för att bara disabla motspelarens.
+  Borde lösa problemet helt enkelt. 
+  
+ 
+ */
+
 function fest(){
 if(current_player == 0){
 	var disableP2 = $('.playerToken2').parent();
