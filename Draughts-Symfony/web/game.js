@@ -70,7 +70,7 @@ function bindAllSelect1(){
 		$('.gameBox1').bind('click', select1);
 		console.log('satt bind till select1 på gamebox');
 	
-	
+	fest();
 }
 
 
@@ -87,7 +87,7 @@ function select1() {
 	//Kolla om isRed är falskt
 	if(!isRed) {
 		console.log('not red select1');
-
+doWork();
 		//Sätt bakgrunden till red
 		$(thisTarget).css('background', 'red');
 
@@ -98,7 +98,7 @@ function select1() {
 		//stäng av alla boxars gamla och sätt dom till select3 ist.
 		$('.gameBox1').off('click');
 		$('.gameBox1').bind('click', select3);
-		fest();
+		
 		//stäng dennas select3 och gör den till select1 istället.
 		$(this).off('click', select3);
 		$(this).bind('click', select1);
@@ -116,7 +116,7 @@ function select1() {
 
 		//Stäng av tidigare binds på gamebox och sätt den till select1 ist.
 		bindAllSelect1();
-		
+		fest();
 		
 	
 	}
@@ -136,7 +136,7 @@ function select3() {
 		$('#' + target + '>div').appendTo($('#' + mouseOverId));
 		console.log('isred sant select3');
 		
-		bindAllSelect1();
+		
 		
 		//Sätt bakgrunden på förra till vit igen
 		$(thisTarget).css('background', '#FFF');
@@ -145,11 +145,11 @@ function select3() {
 		current_player = (++current_player) % players.length;
 		//Berätta vems tur
 		console.log(players[current_player].name);
-		
+		bindAllSelect1();
 		isRed = false;
 		
 		
-		fest();
+		
 	}
 
 	//om det skulle bli grinigt och isred inte är sann, gå tillbaka till select1
@@ -216,3 +216,42 @@ function checkMouse() {
 	});
 	//Slut CHECKMOUSE
 }
+
+
+
+//AJAX
+
+// Get the HTTP Object
+function getHTTPObject(){
+   if (window.ActiveXObject) {
+       return new ActiveXObject("Microsoft.XMLHTTP");
+       console.log('window.nånting');
+   }else if (window.XMLHttpRequest) {
+       return new XMLHttpRequest();
+       console.log('window.nånting');
+   }else {
+      alert("Your browser does not support AJAX.");
+      return null;
+   }
+}
+
+// Implement business logic    
+function doWork(){    
+    httpObject = getHTTPObject();
+    if (httpObject != null) {
+        httpObject.open("GET", "upperCase.php?inputText="
+            +document.getElementById('inputText').value, true);
+        httpObject.send(null); 
+        httpObject.onreadystatechange = setOutput;
+    }
+}
+
+// Change the value of the outputText field
+function setOutput(){
+    if(httpObject.readyState == 4){
+        document.getElementById('outputText').value 
+            = httpObject.responseText;
+    }
+ 
+}
+
