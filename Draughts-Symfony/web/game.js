@@ -87,7 +87,7 @@ function select1() {
 	//Kolla om isRed är falskt
 	if(!isRed) {
 		console.log('not red select1');
-doWork();
+
 		//Sätt bakgrunden till red
 		$(thisTarget).css('background', 'red');
 
@@ -219,39 +219,4 @@ function checkMouse() {
 
 
 
-//AJAX
-
-// Get the HTTP Object
-function getHTTPObject(){
-   if (window.ActiveXObject) {
-       return new ActiveXObject("Microsoft.XMLHTTP");
-       console.log('window.nånting');
-   }else if (window.XMLHttpRequest) {
-       return new XMLHttpRequest();
-       console.log('window.nånting');
-   }else {
-      alert("Your browser does not support AJAX.");
-      return null;
-   }
-}
-
-// Implement business logic    
-function doWork(){    
-    httpObject = getHTTPObject();
-    if (httpObject != null) {
-        httpObject.open("GET", "upperCase.php?inputText="
-            +document.getElementById('inputText').value, true);
-        httpObject.send(null); 
-        httpObject.onreadystatechange = setOutput;
-    }
-}
-
-// Change the value of the outputText field
-function setOutput(){
-    if(httpObject.readyState == 4){
-        document.getElementById('outputText').value 
-            = httpObject.responseText;
-    }
- 
-}
 
