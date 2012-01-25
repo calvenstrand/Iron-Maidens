@@ -113,14 +113,14 @@ class __TwigTemplate_bed390663f27ce08c54f3897175b4ed8 extends Twig_Template
 \t\t\t\t<div id=\"9\" class=\"gameBox2\"></div>
 \t\t\t\t
 \t\t\t\t<!-- Rad 1 -->
-\t\t\t\t<div id=\"1\" class=\"gameBox2\"></div>
-\t\t\t\t<div id=\"2\" class=\"gameBox1\"></div>
-\t\t\t\t<div id=\"3\" class=\"gameBox2\"></div>
-\t\t\t\t<div id=\"4\" class=\"gameBox1\"></div>
-\t\t\t\t<div id=\"5\" class=\"gameBox2\"></div>
-\t\t\t\t<div id=\"6\" class=\"gameBox1\"></div>
-\t\t\t\t<div id=\"7\" class=\"gameBox2\"></div>
-\t\t\t\t<div id=\"8\" class=\"gameBox1\"></div>
+\t\t\t\t<div id=\"8\" class=\"gameBox2\"></div>
+\t\t\t\t<div id=\"7\" class=\"gameBox1\"></div>
+\t\t\t\t<div id=\"6\" class=\"gameBox2\"></div>
+\t\t\t\t<div id=\"5\" class=\"gameBox1\"></div>
+\t\t\t\t<div id=\"4\" class=\"gameBox2\"></div>
+\t\t\t\t<div id=\"3\" class=\"gameBox1\"></div>
+\t\t\t\t<div id=\"2\" class=\"gameBox2\"></div>
+\t\t\t\t<div id=\"1\" class=\"gameBox1\"></div>
 \t\t\t\t
 \t\t\t\t
 \t\t\t\t
