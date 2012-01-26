@@ -2453,7 +2453,7 @@ class appDevDebugProjectContainer extends Container
             'assetic.enable_profiler' => false,
             'assetic.read_from' => 'C:\\xampp\\htdocs\\Iron-Maidens\\Draughts-Symfony\\app/../web',
             'assetic.write_to' => 'C:\\xampp\\htdocs\\Iron-Maidens\\Draughts-Symfony\\app/../web',
-            'assetic.java.bin' => 'C:\\Windows\\system32\\java.EXE',
+            'assetic.java.bin' => '/usr/bin/java',
             'assetic.node.bin' => '/usr/bin/node',
             'assetic.sass.bin' => '/usr/bin/sass',
             'assetic.filter.cssrewrite.class' => 'Assetic\\Filter\\CssRewriteFilter',
