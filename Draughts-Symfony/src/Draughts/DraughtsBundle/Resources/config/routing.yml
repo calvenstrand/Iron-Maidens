@@ -8,3 +8,10 @@ DraughtsBundle_homepage:
     defaults: { _controller: DraughtsBundle:Page:index }
     requirements:
         _method:  GET
+        
+DraughtsBundle_game:
+    pattern: /game
+    defaults: { _controller: DraughtsBundle:Game:game }
+    requirements:
+        _method: GET
+        

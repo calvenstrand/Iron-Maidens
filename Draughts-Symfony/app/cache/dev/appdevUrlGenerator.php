@@ -33,6 +33,7 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_step' => true,
        '_configurator_final' => true,
        'DraughtsBundle_homepage' => true,
+       'DraughtsBundle_game' => true,
     );
 
     /**
@@ -154,5 +155,10 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
     private function getDraughtsBundle_homepageRouteInfo()
     {
         return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\PageController::indexAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
+    }
+
+    private function getDraughtsBundle_gameRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\GameController::gameAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/game',  ),));
     }
 }
