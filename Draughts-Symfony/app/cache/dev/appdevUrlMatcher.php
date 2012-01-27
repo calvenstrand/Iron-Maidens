@@ -148,6 +148,16 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_DraughtsBundle_homepage:
 
+        // DraughtsBundle_game
+        if ($pathinfo === '/game') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_DraughtsBundle_game;
+            }
+            return array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\GameController::gameAction',  '_route' => 'DraughtsBundle_game',);
+        }
+        not_DraughtsBundle_game:
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }
