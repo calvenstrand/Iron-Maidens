@@ -6,7 +6,7 @@ var target;
 var thisTarget;
 var mouseOverId;
 var isRed;
-
+var musis = '<?php $id=41; ?>';
 
 
 
