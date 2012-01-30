@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Rules {
 	
 	public function checkColor ($id, $pt) {
-		$id = 44;
+		$id = 43;
 		$pt = "playerToken1";
 		if ($pt == "playerToken1") {
 			
@@ -26,7 +26,7 @@ class Rules {
 		global $newId2;
 	
 		$id1 = intval($id);
-		if (($id1 -7 >= 1) || ($id -9 >= 1)) {
+		if (($id1 -6 >= 1) || ($id -8 >= 1)) {
 			$newId1 -= 7;
 			$newId2 -= 9;
 			$this->checkWhiteSides();
@@ -41,9 +41,9 @@ class Rules {
 		global $newId2;
 	
 		$id1 = intval($id);
-		if (($id1 +7 <= 64) || ($id1 +9 <= 64)) {
-			$newId1 += 7;
-			$newId2 += 9;
+		if (($id1 +6 <= 63) || ($id1 +8 <= 63)) {
+			$newId1 += 6;
+			$newId2 += 8;
 			$this->checkBlackSides();
 		} else {
 			// GODMODE
@@ -54,7 +54,7 @@ class Rules {
 		if (($id == 49) || ($id == 41) || ($id == 33) || ($id == 25) || ($id == 17) || ($id == 9)) {
 			$newId2 = NULL;
 			// Klar i php
-		} else if (($id == 56) || ($id == 48) || ($id == 40) || ($id == 32) || ($id == 24) || ($id == 16)) {
+		} else if (($id == 57) || ($id == 47) || ($id == 39) || ($id == 31) || ($id == 23) || ($id == 15)) {
 			$newId1 = NULL;
 			// Klar i php
 		} else {
@@ -66,7 +66,7 @@ class Rules {
 		if (($id == 49) || ($id == 41) || ($id == 33) || ($id == 25) || ($id == 17) || ($id == 9)) {
 			$newId1 = NULL;
 			// Klar i php
-		} else if (($id == 56) || ($id == 48) || ($id == 40) || ($id == 32) || ($id == 24) || ($id == 16)) {
+		} else if (($id == 55) || ($id == 47) || ($id == 39) || ($id == 31) || ($id == 23) || ($id == 15)) {
 			$newId2 = NULL;
 			// Klar i php
 		} else {
