@@ -24,9 +24,9 @@ function select1 () {
 		function getMovesForWhite (id) {
 			var newId1;
 			var newId2;
-			if((id -6 >= 1) || (id -8 >= 1)) {
-				newId1 = id - 6;
-				newId2 = id - 8;
+			if((id -7 >= 1) || (id -9 >= 1)) {
+				newId1 = id - 7;
+				newId2 = id - 9;
 				sideWhite(id, newId1, newId2);
 			} else {
 				// GODMODE
@@ -38,7 +38,7 @@ function select1 () {
 					newId2 = null;
 					console.log("Du kan g'a till: " + newId1 + " + " + newId2);
 					makeMove(id, newId1, newId2);
-				} else if ((id == 55) || (id == 47) || (id == 39) || (id == 31) || (id == 23) || (id == 15)) {
+				} else if ((id == 56) || (id == 48) || (id == 40) || (id == 32) || (id == 24) || (id == 16)) {
 					newId1 = null;
 					console.log("Du kan g'a till: " + newId1 + " + " + newId2);
 					makeMove(id, newId1, newId2);
@@ -57,11 +57,11 @@ function select1 () {
 			var id1 = parseInt(id);
 			var newId1 = parseInt(id);
 			var newId2 = parseInt(id);
-			if((id1 +6 <= 64) || (id1 +8 <= 64)) {
+			if((id1 +7 <= 64) || (id1 +9 <= 64)) {
 				newId1 = parseInt(id);
-				newId1 += 6;
+				newId1 += 7;
 				newId2 = parseInt(id);
-				newId2 += 8;
+				newId2 += 9;
 				sideBlack(id, newId1, newId2);
 			} else {
 				// GODMODE
@@ -73,7 +73,7 @@ function select1 () {
 					newId1 = null;
 					console.log("Du kan g'a till: " + newId1 + " + " + newId2);
 					makeMove(id, newId1, newId2);
-				} else if ((id == 55) || (id == 47) || (id == 39) || (id == 31) || (id == 23) || (id == 15)) {
+				} else if ((id == 56) || (id == 48) || (id == 40) || (id == 32) || (id == 24) || (id == 16)) {
 					newId2 = null;
 					console.log("Du kan g'a till: " + newId1 + " + " + newId2);
 					makeMove(id, newId1, newId2);
