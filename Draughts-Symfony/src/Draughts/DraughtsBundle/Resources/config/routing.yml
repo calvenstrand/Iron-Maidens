@@ -1,17 +1,36 @@
+# src/Draughts/DraughtsBundle/Resources/config/routing.yml
+
 DraughtsBundle_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: DraughtsBundle:Default:index }
 
-# src/Draughts/DraughtsBundle/Resources/config/routing.yml
 DraughtsBundle_homepage:
-    pattern:  /
+    pattern:  /  
     defaults: { _controller: DraughtsBundle:Page:index }
     requirements:
         _method:  GET
         
-DraughtsBundle_game:
-    pattern: /game
-    defaults: { _controller: DraughtsBundle:Game:game }
+DraughtsBundle_databaseCreate:
+    pattern:  /add
+    defaults: { _controller: DraughtsBundle:Default:create }
     requirements:
-        _method: GET
+        _method:  GET
+        
+DraughtsBundle_databaseShow:
+    pattern:  /show/{id}
+    defaults: { _controller: DraughtsBundle:Default:show }
+    requirements:
+        _method:  GET
+        
+DraughtsBundle_databaseUpdate:
+    pattern:  /update/{id}
+    defaults: { _controller: DraughtsBundle:Default:update }
+    requirements:
+        _method:  GET
+        
+DraughtsBundle_databaseDelete:
+    pattern:  /delete/{id}
+    defaults: { _controller: DraughtsBundle:Default:delete }
+    requirements:
+        _method:  GET
         
