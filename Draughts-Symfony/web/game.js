@@ -175,9 +175,9 @@ $('#startBtn').click(function() {
 	var playerToken2 = '<div class="playerToken2"></div>';
 
 	// Lägg ut alla brickor, playertokens på dessa IDn
-	$("#64,#62,#60,#58,#55,#53,#51,#49,#48,#46,#44,#42").append(playerToken1);
+	$("#63,#61,#59,#57,#55,#53,#51,#49,#47,#45,#43,#41").append(playerToken1);
 	console.log("gjort player1");
-	$("#1,#3,#5,#7,#10,#12,#14,#16,#17,#19,#21,#23 ").append(playerToken2);
+	$("#1,#3,#5,#7,#9,#11,#13,#15,#17,#19,#21,#23 ").append(playerToken2);
 	console.log("gjort player2");
 
 	//Stäng av startknapp
