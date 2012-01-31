@@ -33,6 +33,10 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_step' => true,
        '_configurator_final' => true,
        'DraughtsBundle_homepage' => true,
+       'DraughtsBundle_databaseCreate' => true,
+       'DraughtsBundle_databaseShow' => true,
+       'DraughtsBundle_databaseUpdate' => true,
+       'DraughtsBundle_databaseDelete' => true,
        'DraughtsBundle_game' => true,
     );
 
@@ -155,6 +159,26 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
     private function getDraughtsBundle_homepageRouteInfo()
     {
         return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\PageController::indexAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
+    }
+
+    private function getDraughtsBundle_databaseCreateRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::createAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/add',  ),));
+    }
+
+    private function getDraughtsBundle_databaseShowRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::showAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/show',  ),));
+    }
+
+    private function getDraughtsBundle_databaseUpdateRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::updateAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/update',  ),));
+    }
+
+    private function getDraughtsBundle_databaseDeleteRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::deleteAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/delete',  ),));
     }
 
     private function getDraughtsBundle_gameRouteInfo()

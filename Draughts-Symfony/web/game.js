@@ -6,7 +6,7 @@ var target;
 var thisTarget;
 var mouseOverId;
 var isRed;
-
+var thisData;
 
 
 
@@ -83,10 +83,22 @@ function select1() {
 	target = $(this).attr("id");
 	
 	thisTarget = ('#' + target);
+	//Ajax test
+	
+
+	
+	//slut ajaxtest
 
 	//Kolla om isRed är falskt
 	if(!isRed) {
 		console.log('not red select1');
+		$.getJSON("app_dev.php/game?target="+target, function(data){
+		thisData = data;
+		
+		console.log('1'+data);
+		});
+		
+//console.log(color);
 
 		//Sätt bakgrunden till red
 		$(thisTarget).css('background', 'red');

@@ -148,6 +148,46 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_DraughtsBundle_homepage:
 
+        // DraughtsBundle_databaseCreate
+        if ($pathinfo === '/add') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_DraughtsBundle_databaseCreate;
+            }
+            return array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::createAction',  '_route' => 'DraughtsBundle_databaseCreate',);
+        }
+        not_DraughtsBundle_databaseCreate:
+
+        // DraughtsBundle_databaseShow
+        if (0 === strpos($pathinfo, '/show') && preg_match('#^/show/(?P<id>[^/]+?)$#xs', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_DraughtsBundle_databaseShow;
+            }
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::showAction',)), array('_route' => 'DraughtsBundle_databaseShow'));
+        }
+        not_DraughtsBundle_databaseShow:
+
+        // DraughtsBundle_databaseUpdate
+        if (0 === strpos($pathinfo, '/update') && preg_match('#^/update/(?P<id>[^/]+?)$#xs', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_DraughtsBundle_databaseUpdate;
+            }
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::updateAction',)), array('_route' => 'DraughtsBundle_databaseUpdate'));
+        }
+        not_DraughtsBundle_databaseUpdate:
+
+        // DraughtsBundle_databaseDelete
+        if (0 === strpos($pathinfo, '/delete') && preg_match('#^/delete/(?P<id>[^/]+?)$#xs', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_DraughtsBundle_databaseDelete;
+            }
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::deleteAction',)), array('_route' => 'DraughtsBundle_databaseDelete'));
+        }
+        not_DraughtsBundle_databaseDelete:
+
         // DraughtsBundle_game
         if ($pathinfo === '/game') {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {

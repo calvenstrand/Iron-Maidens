@@ -10,8 +10,13 @@ class GameController extends Controller
 	public function gameAction()
 	{
 		$test = new Rules();
-		echo $test->checkColor->$id;
-		return new Response("wsedrfgt");
+		$test->ajaxTest();
+		//$test->checkColor(45, 'playerToken1');
+		$nI1 = json_encode($test->newId1);
+		$nI2 = json_encode($test->newId2);
+		
+		
+		return new Response($nI1.$nI2);
 	}
  }
 

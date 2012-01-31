@@ -14,10 +14,30 @@ class Rules {
 	public $id1;
 	public $newId1;
 	public $newId2;
+	public $target;
+	
+	public function ajaxTest (){
+	if (isset($_GET['target'])) {
+		$this->id = $_GET['target'];
+		
+	
+	$this->checkColor($this->id, 'playerToken1');
+	}
+		else{echo "inget funkar";}	
+	}
+	
+	
 	
 	public function checkColor ($id, $pt) {
 		$this->id = $id;
-		if ($pt == "playerToken1") {
+		
+		
+		
+		//$results = array("key" => "value");
+//echo $_GET['callback'] . '(' . json_encode($results) . ')';
+
+
+			if ($pt == "playerToken1") {
 			
 			$this->getMovesWhite($id);
 		} else if ($pt == "playerToken2") {
