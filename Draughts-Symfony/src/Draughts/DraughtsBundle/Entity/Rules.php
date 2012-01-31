@@ -9,12 +9,17 @@ use Doctrine\ORM\Mapping as ORM;
 
 class Rules {
 	
+	public $lol;
+	public $id;
+	public $id1;
+	public $newId1;
+	public $newId2;
+	
 	public function checkColor ($id, $pt) {
-		$id = 43;
-		$pt = "playerToken1";
+		$this->id = $id;
 		if ($pt == "playerToken1") {
 			
-			$this->getMovesWhite();
+			$this->getMovesWhite($id);
 		} else if ($pt == "playerToken2") {
 			$this->getMovesBlack();
 		}
@@ -23,13 +28,15 @@ class Rules {
 	public function getMovesWhite ($id) {
 		global $id1;
 		global $newId1;
+		$this->newId1 = $id;
 		global $newId2;
+		$this->newId2 = $id;
 	
-		$id1 = intval($id);
-		if (($id1 -6 >= 1) || ($id -8 >= 1)) {
-			$newId1 -= 7;
-			$newId2 -= 9;
-			$this->checkWhiteSides();
+		$this->id1 = intval($id);
+		if (($id1 -7 >= 1) || ($id -9 >= 1)) {
+			$this->newId1 -= 7;
+			$this->newId2 -= 9;
+			$this->checkWhiteSides($id, $newId1, $newId2);
 		} else {
 			// GODMODE
 		}
@@ -38,12 +45,14 @@ class Rules {
 	public function getMovesBlack ($id) {
 		global $id1;
 		global $newId1;
+		$newId1 = $id;
 		global $newId2;
-	
+		$newId2 = $id;
+		
 		$id1 = intval($id);
-		if (($id1 +6 <= 63) || ($id1 +8 <= 63)) {
-			$newId1 += 6;
-			$newId2 += 8;
+		if (($id1 +7 <= 64) || ($id1 +9 <= 64)) {
+			$newId1 += 7;
+			$newId2 += 9;
 			$this->checkBlackSides();
 		} else {
 			// GODMODE
@@ -51,22 +60,26 @@ class Rules {
 	}
 	
 	public function checkWhiteSides ($id, $newId1, $newId2) {
+		
 		if (($id == 49) || ($id == 41) || ($id == 33) || ($id == 25) || ($id == 17) || ($id == 9)) {
 			$newId2 = NULL;
 			// Klar i php
-		} else if (($id == 57) || ($id == 47) || ($id == 39) || ($id == 31) || ($id == 23) || ($id == 15)) {
+		} else if (($id == 56) || ($id == 48) || ($id == 40) || ($id == 32) || ($id == 24) || ($id == 16)) {
 			$newId1 = NULL;
 			// Klar i php
 		} else {
-			// Klar i php
+			$this->lol = $this->newId1 . " " . $this->newId2;
+			
+			
 		}
 	}
 	
 	public function checkBlackSides ($id, $newId1, $newId2) {
+		
 		if (($id == 49) || ($id == 41) || ($id == 33) || ($id == 25) || ($id == 17) || ($id == 9)) {
 			$newId1 = NULL;
 			// Klar i php
-		} else if (($id == 55) || ($id == 47) || ($id == 39) || ($id == 31) || ($id == 23) || ($id == 15)) {
+		} else if (($id == 56) || ($id == 48) || ($id == 40) || ($id == 32) || ($id == 24) || ($id == 16)) {
 			$newId2 = NULL;
 			// Klar i php
 		} else {
