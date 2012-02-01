@@ -8,6 +8,8 @@ var mouseOverId;
 var isRed;
 var thisData;
 var obj;
+var moveId1;
+var moveId2;
 
 
 // The first player
@@ -97,12 +99,19 @@ function select1() {
 		console.log(target +'select1');
 		$.getJSON("app_dev.php/game?target="+target+"&token="+thisClass, function(data){
 		
+		moveId1 = data.newId1;
+		moveId2 = data.newId2;
+		
 		
 		console.log(data.newId1);
 		console.log(data.newId2);
+		$('.gameBox1').off('click');
+		$('#'+moveId1).bind('click', select3);
+		$('#'+moveId2).bind('click', select3);
+		
 		});
 		
-//console.log(color);
+
 
 		//Sätt bakgrunden till red
 		$(thisTarget).css('background', 'red');
@@ -112,20 +121,19 @@ function select1() {
 		
 
 		//stäng av alla boxars gamla och sätt dom till select3 ist.
-		$('.gameBox1').off('click');
-		$('.gameBox1').bind('click', select3);
 		
+		console.log('bindat select 3 på 2 saker');
 		//stäng dennas select3 och gör den till select1 istället.
-		$(this).off('click', select3);
+		//$(this).off('click', select3);
 		$(this).bind('click', select1);
-		
+		console.log('stängt dens egna select o satt den till 1');
 
 		// Kolla om isRed är sant
 	} else if(isRed) {
-		console.log('isred är sant select1');
+		console.log('is red');
 
 		//Sätt bakgrunden till vit
-		$(thisTarget).css('background', '#FFF');
+		$(thisTarget).css('background', '');
 
 		//Sätt isRed till falskt
 		isRed = false;
@@ -155,7 +163,7 @@ function select3() {
 		
 		
 		//Sätt bakgrunden på förra till vit igen
-		$(thisTarget).css('background', '#FFF');
+		$(thisTarget).css('background', '');
 		
 		//sätt nästa spelares tur
 		current_player = (++current_player) % players.length;
