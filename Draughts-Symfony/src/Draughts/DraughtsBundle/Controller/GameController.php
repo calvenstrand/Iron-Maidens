@@ -12,11 +12,11 @@ class GameController extends Controller
 		$test = new Rules();
 		$test->ajaxTest();
 		//$test->checkColor(45, 'playerToken1');
-		$nI1 = json_encode($test->newId1);
-		$nI2 = json_encode($test->newId2);
 		
 		
-		return new Response($nI1.$nI2);
+		return new Response(json_encode(array('newId1'=>$test->newId1,'newId2'=>$test->newId2)));
+		
+		
 	}
  }
 

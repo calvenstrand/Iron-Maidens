@@ -15,13 +15,15 @@ class Rules {
 	public $newId1;
 	public $newId2;
 	public $target;
+	public $pt;
 	
 	public function ajaxTest (){
 	if (isset($_GET['target'])) {
 		$this->id = $_GET['target'];
+		$this->pt = $_GET['token'];
 		
 	
-	$this->checkColor($this->id, 'playerToken1');
+	$this->checkColor($this->id, $this->pt);
 	}
 		else{echo "inget funkar";}	
 	}
@@ -41,7 +43,7 @@ class Rules {
 			
 			$this->getMovesWhite($id);
 		} else if ($pt == "playerToken2") {
-			$this->getMovesBlack();
+			$this->getMovesBlack($id);
 		}
 	}
 	
@@ -65,15 +67,15 @@ class Rules {
 	public function getMovesBlack ($id) {
 		global $id1;
 		global $newId1;
-		$newId1 = $id;
+		$this->newId1 = $id;
 		global $newId2;
-		$newId2 = $id;
+		$this->newId2 = $id;
 		
 		$id1 = intval($id);
 		if (($id1 +7 <= 64) || ($id1 +9 <= 64)) {
-			$newId1 += 7;
-			$newId2 += 9;
-			$this->checkBlackSides();
+			$this->newId1 += 7;
+			$this->newId2 += 9;
+			$this->checkBlackSides($id, $newId1, $newId2);
 		} else {
 			// GODMODE
 		}
@@ -82,10 +84,10 @@ class Rules {
 	public function checkWhiteSides ($id, $newId1, $newId2) {
 		
 		if (($id == 49) || ($id == 41) || ($id == 33) || ($id == 25) || ($id == 17) || ($id == 9)) {
-			$newId2 = NULL;
+			$this->newId2 = NULL;
 			// Klar i php
 		} else if (($id == 56) || ($id == 48) || ($id == 40) || ($id == 32) || ($id == 24) || ($id == 16)) {
-			$newId1 = NULL;
+			$this->newId1 = NULL;
 			// Klar i php
 		} else {
 			$this->lol = $this->newId1 . " " . $this->newId2;
@@ -97,13 +99,14 @@ class Rules {
 	public function checkBlackSides ($id, $newId1, $newId2) {
 		
 		if (($id == 49) || ($id == 41) || ($id == 33) || ($id == 25) || ($id == 17) || ($id == 9)) {
-			$newId1 = NULL;
+			$this->newId1 = NULL;
 			// Klar i php
 		} else if (($id == 56) || ($id == 48) || ($id == 40) || ($id == 32) || ($id == 24) || ($id == 16)) {
-			$newId2 = NULL;
+			$this->newId2 = NULL;
 			// Klar i php
 		} else {
 			// Klar i php
+			$this->lol = $this->newId1 . " " . $this->newId2;
 		}				
 	}
 

@@ -7,7 +7,7 @@ var thisTarget;
 var mouseOverId;
 var isRed;
 var thisData;
-
+var obj;
 
 
 // The first player
@@ -82,20 +82,24 @@ function select1() {
 	
 	target = $(this).attr("id");
 	
+	
+	
 	thisTarget = ('#' + target);
 	//Ajax test
-	
+	var thisClass = $(thisTarget).children().attr("class");
+	console.log(thisClass);
 
 	
 	//slut ajaxtest
 
 	//Kolla om isRed är falskt
 	if(!isRed) {
-		console.log('not red select1');
-		$.getJSON("app_dev.php/game?target="+target, function(data){
-		thisData = data;
+		console.log(target +'select1');
+		$.getJSON("app_dev.php/game?target="+target+"&token="+thisClass, function(data){
 		
-		console.log('1'+data);
+		
+		console.log(data.newId1);
+		console.log(data.newId2);
 		});
 		
 //console.log(color);
@@ -187,9 +191,9 @@ $('#startBtn').click(function() {
 	var playerToken2 = '<div class="playerToken2"></div>';
 
 	// Lägg ut alla brickor, playertokens på dessa IDn
-	$("#63,#61,#59,#57,#55,#53,#51,#49,#47,#45,#43,#41").append(playerToken1);
+	$("#64,#62,#60,#58,#55,#53,#51,#49,#48,#46,#44,#42").append(playerToken1);
 	console.log("gjort player1");
-	$("#1,#3,#5,#7,#9,#11,#13,#15,#17,#19,#21,#23 ").append(playerToken2);
+	$("#1,#3,#5,#7,#10,#12,#14,#16,#17,#19,#21,#23").append(playerToken2);
 	console.log("gjort player2");
 
 	//Stäng av startknapp
