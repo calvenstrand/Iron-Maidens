@@ -6,8 +6,6 @@ var target;
 var thisTarget;
 var mouseOverId;
 var isRed;
-var thisData;
-var obj;
 var moveId1;
 var moveId2;
 var moveWithId1;
@@ -16,7 +14,6 @@ var deleteId1 = null;
 var deleteId2 = null;
 var hasChild2;
 var hasChild1;
-var movers;
 var idRight;
 var idLeft;
 
@@ -24,100 +21,72 @@ var idLeft;
 var player1 = {
     name: 'Player 1',
     color: 'playerToken1',
-    wins: 0};
+    wins: 0
+    };
 // The second player
 var player2 = {
     name: 'Player 2',
     color: 'playerToken2',
     wins: 0
-};
+	};
 var players = [player1, player2];
 var current_player = 0;
 
 
 
 
-
-/*
-  Funderingar kring fest funktionen:
-  1. Fixa så att alla ens egna boxar också är disabled när man har en rödmarkerad pjäs
-  1.1: Disabla ALLA där det finns tokens 1 eller 2 istället för att bara disabla motspelarens.
-  Borde lösa problemet helt enkelt. 
-  ////////
-  
-  Funderingar kring ta bricka
-  
-  kolla om det står en bricka på någon av de möjliga rutorna att gå till
-  om det finns en beroende på vilken lägg till 7 eller 9 till möjliga nya rutor att gå till
-  om man hoppar över, ta brickan man hoppat över och lägg den bredvid spelbrädet
-  
-  
- 
- */
-
-function fest(){
+//Funktionen som disablar klick på motspelarens pjäser
+function disableOpponent(){
+	
 if(current_player == 0){
+	//Om det är player 1 alltså vit disable player2 toks
 	var disableP2 = $('.playerToken2').parent();
 	
 	$(disableP2).each(function(i) {
-	
-	$(this).off('click', select3);
-	$(this).off('click', select1);
-	
+		//Stäng av bind på motspelarens pjäser
+		$(this).off('click');
 	});
 	
-
 }else if(current_player == 1){
+	//Om det är player 2 alltså svart disable player1 toks
 	var disableP1 = $('.playerToken1').parent();
-	
 	$(disableP1).each(function(i) {
-	
-	$(this).off('click', select3);
-	$(this).off('click', select1);
-	
+		//Stäng av bind på motspelarens pjäser
+		$(this).off('click');
 	});
-	
-}
+	}
 }
 
-function bindAllSelect1(){
+//Funktion för att re-binda alla till selectToken
+
+function bindAllSelectToken(){
 	$('.gameBox1').off('click');
-		
-
-		//Sätt tillbaka binden till select1
-		$('.gameBox1').bind('click', select1);
-		
-	
-	fest();
+		//Sätt tillbaka binden till SelectToken
+	$('.gameBox1').bind('click', selectToken);
+		//Bind alla till SelectToken med funktionen
+	disableOpponent();
 }
-
-
-
 
 
 // startkollningen
-function select1() {
+function selectToken() {
 	console.log("Klick på spelpjäs.");
 	deleteId1 = null;
 	deleteId2 = null;
 	target = $(this).attr("id");
-	
-	
-	
 	thisTarget = ('#' + target);
-	//Ajax test
+	//Ajax variabel som berättar klassen för json hämtningen
 	var thisClass = $(thisTarget).children().attr("class");
 	
-	//slut ajaxtest
 
 	//Kolla om isRed är falskt
 	if(!isRed) {
-		//console.log(target +'select1');
+		//Get json object, 
 		$.getJSON("app_dev.php/game?target="+target+"&token="+thisClass, function(data){
-		
+		//översätt jsonobjektet till 2 möjliga drag
 		moveId1 = data.newId1;
 		moveId2 = data.newId2;
-		
+		//
 		idRight = $('#' + moveId1).children().attr("class"); 
 		idLeft  = $('#' + moveId2).children().attr("class");
 		
@@ -186,11 +155,12 @@ function select1() {
 			console.log("Möjlighet att ta: " + deleteId2 + " & " + deleteId1);
 			
 		}
-
+		
+		//Eventuellt baka in dessa i bindallSelectToken o göra om den till en bindfunktion för alla.
 		$('.gameBox1').off('click');
-		$('#'+moveId1).bind('click', select3);
-		$('#'+moveId2).bind('click', select3);
-		$(thisTarget).bind('click', select1);
+		$('#'+moveId1).bind('click', moveToken);
+		$('#'+moveId2).bind('click', moveToken);
+		$(thisTarget).bind('click', selectToken);
 				
 		});
 
@@ -211,14 +181,14 @@ function select1() {
 		//Sätt isRed till falskt
 		isRed = false;
 
-		//Stäng av tidigare binds på gamebox och sätt den till select1 ist.
-		bindAllSelect1();
-		fest();
+		//Stäng av tidigare binds på gamebox och sätt den till SelectToken ist.
+		bindAllSelectToken();
+		
 		
 	
 	}
 
-	//SLUT SELECT1
+	//SLUT SelectToken
 }
 
 function checkSecondToken () {
@@ -243,7 +213,7 @@ function checkSecondToken () {
 
 
 
-function select3() {
+function moveToken() {
 
 	//Kolla om isred är sann och att man har en target att sno ifrån, och flytta
 	if(isRed) {
@@ -283,21 +253,21 @@ function select3() {
 		current_player = (++current_player) % players.length;
 		//Berätta vems tur
 		
-		bindAllSelect1();
+		bindAllSelectToken();
 		isRed = false;
 		
 		
 		
 	}
 
-	//om det skulle bli grinigt och isred inte är sann, gå tillbaka till select1
+	//om det skulle bli grinigt och isred inte är sann, gå tillbaka till SelectToken
 	else if(!isRed) {
 		
-		$(thisTarget).off('click', select3);
-		$(thisTarget).click(select1);
+		$(thisTarget).off('click', moveToken);
+		$(thisTarget).click(selectToken);
 	}
 
-	//Slut SELECT3
+	//Slut moveToken
 }
 
 
@@ -336,9 +306,9 @@ $('#startBtn').click(function() {
 	//   MUY IMPORTANTE
 	//
 	// binden för att börja utföra spelgrejen
-	bindAllSelect1();
+	bindAllSelectToken();
 	checkMouse();
-	fest();
+	
 
 	//Slut STARTBUTTON BIND
 
