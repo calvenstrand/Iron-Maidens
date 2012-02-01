@@ -1,5 +1,5 @@
 /**
- * @author Rasmus
+ * @author Iron-Maidens
  */
 
 var target;
@@ -17,6 +17,8 @@ var deleteId2 = null;
 var hasChild2;
 var hasChild1;
 var movers;
+var idRight;
+var idLeft;
 
 // The first player
 var player1 = {
@@ -56,7 +58,7 @@ var current_player = 0;
 function fest(){
 if(current_player == 0){
 	var disableP2 = $('.playerToken2').parent();
-	console.log('p2 disabled');
+	
 	$(disableP2).each(function(i) {
 	
 	$(this).off('click', select3);
@@ -67,7 +69,7 @@ if(current_player == 0){
 
 }else if(current_player == 1){
 	var disableP1 = $('.playerToken1').parent();
-	console.log('p1 disabled');
+	
 	$(disableP1).each(function(i) {
 	
 	$(this).off('click', select3);
@@ -80,11 +82,11 @@ if(current_player == 0){
 
 function bindAllSelect1(){
 	$('.gameBox1').off('click');
-		console.log('tagit bort bind på gamebox');
+		
 
 		//Sätt tillbaka binden till select1
 		$('.gameBox1').bind('click', select1);
-		console.log('satt bind till select1 på gamebox');
+		
 	
 	fest();
 }
@@ -95,6 +97,7 @@ function bindAllSelect1(){
 
 // startkollningen
 function select1() {
+	console.log("Klick på spelpjäs.");
 	deleteId1 = null;
 	deleteId2 = null;
 	target = $(this).attr("id");
@@ -104,8 +107,6 @@ function select1() {
 	thisTarget = ('#' + target);
 	//Ajax test
 	var thisClass = $(thisTarget).children().attr("class");
-	console.log(thisClass);
-
 	
 	//slut ajaxtest
 
@@ -117,114 +118,92 @@ function select1() {
 		moveId1 = data.newId1;
 		moveId2 = data.newId2;
 		
-		moveWithId1 = $('#'+moveId1);
-		moveWithId2 = $('#'+moveId2);
-		
-		hasChild1 = $('#'+moveId1+' > *').length > 0;
-		hasChild2 = $('#'+moveId2+' > *').length > 0;
+		idRight = $('#' + moveId1).children().attr("class"); 
+		idLeft  = $('#' + moveId2).children().attr("class");
 		
 		if (current_player == 0) {
-			console.log("nu kan vit ta svart");
-			if (hasChild2 && $('#'+moveId2+'>div').hasClass("playerToken2")){
-				moveId2 = target - 18;
+			
+			// Vits tur
+			// Kollar om det finns en svart pjäs till vänster (för pjäsen) = möjlighet att hoppa över
+			if (idLeft  === "playerToken2") {
+				moveId2   = target - 18;
 				deleteId2 = moveId2 + 9;
-				movers = moveId2;
-				
-				console.log(moveId2+'kan inte gå fram till vänster');
+				checkSecondToken();
 			}
-			if (hasChild2 && $('#'+moveId2+'>div').hasClass("playerToken1")){
-				moveId2 = null;
+			
+			// Kollar om det finns en vit pjäs till vänster (för pjäsen) = no action
+			if (idLeft  === "playerToken1") {
+				moveId2   = null;
 			}
-			if (hasChild1 && $('#'+moveId1+'>div').hasClass("playerToken2")){
-				moveId1 = target -14;
+			
+			// Kollar om det finns en svart pjäs till höger (för pjäsen) = möjlighet att hoppa över
+			if (idRight === "playerToken2") {
+				moveId1   = target - 14;
 				deleteId1 = moveId1 + 7;
-				movers = moveId1;
-				
-				console.log('kan inte gå fram till höger');
-
+				checkSecondToken();
 			}
-			if (hasChild1 && $('#'+moveId1+'>div').hasClass("playerToken1")){
-					moveId1 = null;
+			
+			// Kollar om det finns en vit pjäs till höger (för pjäsen) = no action
+			if (idRight === "playerToken1") {
+				moveId1   = null;
 			}
+			
+			console.log("Möjliga drag: " + moveId1 + " & " + moveId2);
+			console.log("Möjlighet att ta: " + deleteId1 + " & " + deleteId2);
+			
 		} else {
-			console.log("nu kan svart ta vit");
-			if (hasChild2 && $('#'+moveId2+'>div').hasClass("playerToken1")){
-				var target1 = parseInt(target);
-				moveId2 = (target1 + 18);
-				deleteId2 = moveId2 - 9;
-				
-
+			
+			// Svarts tur
+			// Skapar ny var och parsar den
+			var tempTarget;
+			tempTarget = parseInt(target);
+			
+			// Kollar om det finns en vit pjäs till vänster (för pjäsen) = möjlighet att hoppa över
+			if (idLeft  === "playerToken1") {
+				moveId2    = (tempTarget + 18);
+				deleteId2  = moveId2 - 9;
+				checkSecondToken();
 			}
-			if (hasChild2 && $('#'+moveId2+'>div').hasClass("playerToken2")){
-				moveId2 = null;
+			
+			// Kollar om det finns en svart pjäs till vänster (för pjäsen) = no action
+			if (idLeft  === "playerToken2") {
+				moveId2    = null;
 			}
-			if (hasChild1 && $('#'+moveId1+'>div').hasClass("playerToken1")){
-				var target1 = parseInt(target);
-				moveId1 = (target1 +14);
-				deleteId1 = moveId1 - 7;
-				
-
+			
+			// Kollar om det finns en vit pjäs till höger (för pjäsen) = möjlighet att hoppa över
+			if (idRight === "playerToken1") {
+				moveId1    = (tempTarget + 14);
+				deleteId1  = moveId1 - 7;
+				checkSecondToken();
 			}
-			if (hasChild1 && $('#'+moveId1+'>div').hasClass("playerToken2")){
+			
+			// Kollar om det finns en svart pjäs till höger (för pjäsen) = no action
+			if (idRight  === "playerToken2") {
 				moveId1 = null;
 			}
-			/*if(hasChild1){
-				moveId1 = null;
-			}
-			if(hasChild2){
-				moveId2 = null;
-			}*/
-		}
-		
-		if (!hasChild1 && !hasChild2){console.log('Inga brickor ivägen');}
-		
-		
-		hasChild1 = $('#'+moveId1+' > *').length > 0;
-		hasChild2 = $('#'+moveId2+' > *').length > 0;
-		if (hasChild1) {
 			
-			moveId1 = null;
-			deleteId1 = null;
-		}
-		if (hasChild2) {
-			moveId2 = null;
-			deleteId2 = null;
+			console.log("Möjliga drag: " + moveId2 + " & " + moveId1);
+			console.log("Möjlighet att ta: " + deleteId2 + " & " + deleteId1);
 			
 		}
-		console.log('deleteid1: '+deleteId1);
-		console.log('deleteid2: '+deleteId2);
-		console.log(moveId1);
-		console.log(moveId2);
-		
-		
+
 		$('.gameBox1').off('click');
 		$('#'+moveId1).bind('click', select3);
 		$('#'+moveId2).bind('click', select3);
 		$(thisTarget).bind('click', select1);
-		
-		
+				
 		});
-		
-
 
 		//Sätt bakgrunden till red
 		$(thisTarget).css('background', 'red');
 		
-		isRed = true;
 		//Sätt isRed till true
-		
-		
-
-		//stäng av alla boxars gamla och sätt dom till select3 ist.
-		
-		console.log('bindat select 3 på 2 saker');
-		//stäng dennas select3 och gör den till select1 istället.
-		//$(this).off('click', select3);
+		isRed = true;
 		
 
 		// Kolla om isRed är sant
 	} else if(isRed) {
-		console.log('is red');
+		
 
 		//Sätt bakgrunden till vit
 		$(thisTarget).css('background', '');
@@ -242,6 +221,25 @@ function select1() {
 	//SLUT SELECT1
 }
 
+function checkSecondToken () {
+	
+	// Hämtar klassen på de nya ID:nas barn
+	idRight = $('#' + moveId1).children().attr("class"); 
+	idLeft  = $('#' + moveId2).children().attr("class");
+	
+	// Kollar om det finns på högra...
+	if (idRight) {
+		moveId1 = null;
+		deleteId1 = null;
+	}
+	
+	// Kollar om det finns på vänstra...
+	if (idLeft) {
+		moveId2 = null;
+		deleteId2 = null;
+	}
+	
+}
 
 
 
@@ -252,20 +250,31 @@ function select3() {
 
 		//Flytta div inuti target till mouseover targeten
 		$('#' + target + '>div').appendTo($('#' + mouseOverId));
-		console.log('isred sant select3');
-		if(deleteId2 != null) {
-			$('#'+deleteId2+'>div').remove();
-				console.log("tog bort: " + deleteId2);
-				deleteId2 = null;
-		 }
-		if(deleteId1 != null) {
-			$('#'+deleteId1+'>div').remove();
-				console.log("tog bort: " + deleteId1);
-				deleteId1 = null;
-		} else {
-			
+		
+		var currentPosition;
+		
+		// Kollar var man flyttade
+		currentPosition = $(this).attr("id");
+		var curPos = parseInt(currentPosition);
+		var mId1 = parseInt(moveId1);
+		var mId2 = parseInt(moveId2);
+		console.log("Flyttade till: " + currentPosition);
+		
+		// Kollar om man valde att döda möjligheten: deleteId1 (bra Sverige), samt tar bort
+		if ((deleteId1 != null) && (curPos === mId1)) {
+			$('#' + deleteId1 + '>div').remove();
+			console.log("Du tog: " + deleteId1);
+			deleteId1 = null;
 		}
 		
+		// Kollar om man valde att döda möjligheten: deleteId2 (bra Sverige), samt tar bort
+		if ((deleteId2 != null) && (curPos === mId2)) {
+			$('#' + deleteId2 + '>div').remove();
+			console.log("Du tog: " + deleteId2);
+			deleteId2 = null;
+		}
+		
+		// Rinse and repeat...
 		
 		//Sätt bakgrunden på förra till vit igen
 		$(thisTarget).css('background', '');
@@ -273,7 +282,7 @@ function select3() {
 		//sätt nästa spelares tur
 		current_player = (++current_player) % players.length;
 		//Berätta vems tur
-		console.log(players[current_player].name);
+		
 		bindAllSelect1();
 		isRed = false;
 		
@@ -283,7 +292,7 @@ function select3() {
 
 	//om det skulle bli grinigt och isred inte är sann, gå tillbaka till select1
 	else if(!isRed) {
-		console.log('isred inte sann select3')
+		
 		$(thisTarget).off('click', select3);
 		$(thisTarget).click(select1);
 	}
@@ -298,16 +307,16 @@ function select3() {
 
 // Start BIND STARTBUTTON
 
-console.log('laddat sidan');
+console.log('Laddat sidan.');
 $('#startBtn').click(function() {
 	var playerToken1 = '<div class="playerToken1"></div>';
 	var playerToken2 = '<div class="playerToken2"></div>';
 
 	// Lägg ut alla brickor, playertokens på dessa IDn
 	$("#64,#62,#60,#58,#55,#53,#51,#49,#48,#46,#44,#42").append(playerToken1);
-	console.log("gjort player1");
+	console.log("Player 1 skapad.");
 	$("#1,#3,#5,#7,#10,#12,#14,#16,#17,#19,#21,#23").append(playerToken2);
-	console.log("gjort player2");
+	console.log("Player 2 skapad.");
 
 	//Stäng av startknapp
 	$('#startBtn').off('click');
@@ -316,13 +325,13 @@ $('#startBtn').click(function() {
 	$(".playerToken1").each(function(i) {
 
 		$(this).attr('id', 'playerToken1' + (i + 1));
-		console.log((i + 1) + 'done');
+		
 	});
 	//PlayerToken 2 GE ID!
 	$(".playerToken2").each(function(i) {
 
 		$(this).attr('id', 'playerToken2' + (i + 1));
-		console.log((i + 1) + 'done');
+		
 	});
 	//   MUY IMPORTANTE
 	//
