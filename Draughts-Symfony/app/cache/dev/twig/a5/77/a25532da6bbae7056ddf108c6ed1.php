@@ -42,7 +42,7 @@ class __TwigTemplate_a577a25532da6bbae7056ddf108c6ed1 extends Twig_Template
     <body>
 \t\t<div class=\"headerwrapper\">
 \t\t\t<div id=\"header\">
-\t\t\t    \t<img src=\"img/headerimg.png\">
+\t\t\t    \t
 \t\t\t</div>
 \t\t</div>
 \t\t<div id=\"mainGameWrapper\">

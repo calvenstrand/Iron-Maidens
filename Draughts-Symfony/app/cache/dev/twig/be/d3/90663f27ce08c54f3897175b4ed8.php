@@ -28,8 +28,8 @@ class __TwigTemplate_bed390663f27ce08c54f3897175b4ed8 extends Twig_Template
     public function block_body($context, array $blocks = array())
     {
         // line 5
-        echo "
-    <div id=\"numberWrapper\">
+        echo "\t
+    \t\t<div id=\"numberWrapper\">
     \t\t\t<div class=\"numberBox\">8</div>
 \t\t\t\t<div class=\"numberBox\">7</div>
 \t\t\t\t<div class=\"numberBox\">6</div>
@@ -141,8 +141,8 @@ class __TwigTemplate_bed390663f27ce08c54f3897175b4ed8 extends Twig_Template
 \t\t\t\t
 \t\t\t</div>
 \t\t
-    \t
-  
+\t\t\t\t<input id=\"startBtn\" type=\"submit\" value=\"Starta!\">
+
   ";
     }
 
@@ -150,13 +150,11 @@ class __TwigTemplate_bed390663f27ce08c54f3897175b4ed8 extends Twig_Template
     public function block_form($context, array $blocks = array())
     {
         // line 122
-        echo "  \t\t
-\t\t\t<input id=\"startBtn\" type=\"submit\" value=\"Starta!\">
-\t\techo \"hej\";
+        echo "  \t\t\t
 \t\t  ";
     }
 
-    // line 127
+    // line 125
     public function block_javascripts($context, array $blocks = array())
     {
         echo " 
