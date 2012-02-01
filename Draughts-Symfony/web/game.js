@@ -10,7 +10,13 @@ var thisData;
 var obj;
 var moveId1;
 var moveId2;
-
+var moveWithId1;
+var moveWithId2;
+var deleteId1 = null;
+var deleteId2 = null;
+var hasChild2;
+var hasChild1;
+var movers;
 
 // The first player
 var player1 = {
@@ -35,6 +41,14 @@ var current_player = 0;
   1. Fixa så att alla ens egna boxar också är disabled när man har en rödmarkerad pjäs
   1.1: Disabla ALLA där det finns tokens 1 eller 2 istället för att bara disabla motspelarens.
   Borde lösa problemet helt enkelt. 
+  ////////
+  
+  Funderingar kring ta bricka
+  
+  kolla om det står en bricka på någon av de möjliga rutorna att gå till
+  om det finns en beroende på vilken lägg till 7 eller 9 till möjliga nya rutor att gå till
+  om man hoppar över, ta brickan man hoppat över och lägg den bredvid spelbrädet
+  
   
  
  */
@@ -81,7 +95,8 @@ function bindAllSelect1(){
 
 // startkollningen
 function select1() {
-	
+	deleteId1 = null;
+	deleteId2 = null;
 	target = $(this).attr("id");
 	
 	
@@ -96,18 +111,97 @@ function select1() {
 
 	//Kolla om isRed är falskt
 	if(!isRed) {
-		console.log(target +'select1');
+		//console.log(target +'select1');
 		$.getJSON("app_dev.php/game?target="+target+"&token="+thisClass, function(data){
 		
 		moveId1 = data.newId1;
 		moveId2 = data.newId2;
 		
+		moveWithId1 = $('#'+moveId1);
+		moveWithId2 = $('#'+moveId2);
 		
-		console.log(data.newId1);
-		console.log(data.newId2);
+		hasChild1 = $('#'+moveId1+' > *').length > 0;
+		hasChild2 = $('#'+moveId2+' > *').length > 0;
+		
+		if (current_player == 0) {
+			console.log("nu kan vit ta svart");
+			if (hasChild2 && $('#'+moveId2+'>div').hasClass("playerToken2")){
+				moveId2 = target - 18;
+				deleteId2 = moveId2 + 9;
+				movers = moveId2;
+				
+				console.log(moveId2+'kan inte gå fram till vänster');
+			}
+			if (hasChild2 && $('#'+moveId2+'>div').hasClass("playerToken1")){
+				moveId2 = null;
+			}
+			if (hasChild1 && $('#'+moveId1+'>div').hasClass("playerToken2")){
+				moveId1 = target -14;
+				deleteId1 = moveId1 + 7;
+				movers = moveId1;
+				
+				console.log('kan inte gå fram till höger');
+
+			}
+			if (hasChild1 && $('#'+moveId1+'>div').hasClass("playerToken1")){
+					moveId1 = null;
+			}
+		} else {
+			console.log("nu kan svart ta vit");
+			if (hasChild2 && $('#'+moveId2+'>div').hasClass("playerToken1")){
+				var target1 = parseInt(target);
+				moveId2 = (target1 + 18);
+				deleteId2 = moveId2 - 9;
+				
+
+			}
+			if (hasChild2 && $('#'+moveId2+'>div').hasClass("playerToken2")){
+				moveId2 = null;
+			}
+			if (hasChild1 && $('#'+moveId1+'>div').hasClass("playerToken1")){
+				var target1 = parseInt(target);
+				moveId1 = (target1 +14);
+				deleteId1 = moveId1 - 7;
+				
+
+			}
+			if (hasChild1 && $('#'+moveId1+'>div').hasClass("playerToken2")){
+				moveId1 = null;
+			}
+			/*if(hasChild1){
+				moveId1 = null;
+			}
+			if(hasChild2){
+				moveId2 = null;
+			}*/
+		}
+		
+		if (!hasChild1 && !hasChild2){console.log('Inga brickor ivägen');}
+		
+		
+		hasChild1 = $('#'+moveId1+' > *').length > 0;
+		hasChild2 = $('#'+moveId2+' > *').length > 0;
+		if (hasChild1) {
+			
+			moveId1 = null;
+			deleteId1 = null;
+		}
+		if (hasChild2) {
+			moveId2 = null;
+			deleteId2 = null;
+			
+		}
+		console.log('deleteid1: '+deleteId1);
+		console.log('deleteid2: '+deleteId2);
+		console.log(moveId1);
+		console.log(moveId2);
+		
+		
 		$('.gameBox1').off('click');
 		$('#'+moveId1).bind('click', select3);
 		$('#'+moveId2).bind('click', select3);
+		$(thisTarget).bind('click', select1);
+		
 		
 		});
 		
@@ -115,9 +209,10 @@ function select1() {
 
 		//Sätt bakgrunden till red
 		$(thisTarget).css('background', 'red');
-
-		//Sätt isRed till true
+		
 		isRed = true;
+		//Sätt isRed till true
+		
 		
 
 		//stäng av alla boxars gamla och sätt dom till select3 ist.
@@ -125,8 +220,7 @@ function select1() {
 		console.log('bindat select 3 på 2 saker');
 		//stäng dennas select3 och gör den till select1 istället.
 		//$(this).off('click', select3);
-		$(this).bind('click', select1);
-		console.log('stängt dens egna select o satt den till 1');
+		
 
 		// Kolla om isRed är sant
 	} else if(isRed) {
@@ -159,7 +253,18 @@ function select3() {
 		//Flytta div inuti target till mouseover targeten
 		$('#' + target + '>div').appendTo($('#' + mouseOverId));
 		console.log('isred sant select3');
-		
+		if(deleteId2 != null) {
+			$('#'+deleteId2+'>div').remove();
+				console.log("tog bort: " + deleteId2);
+				deleteId2 = null;
+		 }
+		if(deleteId1 != null) {
+			$('#'+deleteId1+'>div').remove();
+				console.log("tog bort: " + deleteId1);
+				deleteId1 = null;
+		} else {
+			
+		}
 		
 		
 		//Sätt bakgrunden på förra till vit igen
