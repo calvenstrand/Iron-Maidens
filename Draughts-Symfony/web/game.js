@@ -8,6 +8,8 @@ var mouseOverId;
 var isRed;
 var moveId1;
 var moveId2;
+var moveId3;
+var moveId4;
 var moveWithId1;
 var moveWithId2;
 var deleteId1 = null;
@@ -41,8 +43,12 @@ function disableOpponent(){
 if(current_player == 0){
 	//Om det är player 1 alltså vit disable player2 toks
 	var disableP2 = $('.playerToken2').parent();
-	
+	var disableP2k = $('.pt2k').parent();
 	$(disableP2).each(function(i) {
+		//Stäng av bind på motspelarens pjäser
+		$(this).off('click');
+	});
+	$(disableP2k).each(function(i) {
 		//Stäng av bind på motspelarens pjäser
 		$(this).off('click');
 	});
@@ -50,7 +56,12 @@ if(current_player == 0){
 }else if(current_player == 1){
 	//Om det är player 2 alltså svart disable player1 toks
 	var disableP1 = $('.playerToken1').parent();
+	var disableP1k = $('.pt1k').parent();
 	$(disableP1).each(function(i) {
+		//Stäng av bind på motspelarens pjäser
+		$(this).off('click');
+	});
+	$(disableP1k).each(function(i) {
 		//Stäng av bind på motspelarens pjäser
 		$(this).off('click');
 	});
@@ -86,38 +97,47 @@ function selectToken() {
 		//översätt jsonobjektet till 2 möjliga drag
 		moveId1 = data.newId1;
 		moveId2 = data.newId2;
+		//kungens extra drag
+		moveId3 = data.newId3;
+		moveId4 = data.newId4;
+		
 		//
 		idRight = $('#' + moveId1).children().attr("class"); 
 		idLeft  = $('#' + moveId2).children().attr("class");
+		//kungens
+		idRightKing = $('#' + moveId3).children().attr("class");
+		idLeftKing  = $('#' + moveId4).children().attr("class");
 		
 		if (current_player == 0) {
 			
 			// Vits tur
 			// Kollar om det finns en svart pjäs till vänster (för pjäsen) = möjlighet att hoppa över
-			if (idLeft  === "playerToken2") {
+			
+			if (idLeft  === ("playerToken2") || ("pt2k")) {
 				moveId2   = target - 18;
 				deleteId2 = moveId2 + 9;
 				checkSecondToken();
 			}
 			
 			// Kollar om det finns en vit pjäs till vänster (för pjäsen) = no action
-			if (idLeft  === "playerToken1") {
+			if (idLeft  === ("playerToken1") || ("pt1k")) {
 				moveId2   = null;
 			}
 			
 			// Kollar om det finns en svart pjäs till höger (för pjäsen) = möjlighet att hoppa över
-			if (idRight === "playerToken2") {
+			if (idRight === ("playerToken2")|| ("pt2k")) {
 				moveId1   = target - 14;
 				deleteId1 = moveId1 + 7;
 				checkSecondToken();
 			}
 			
 			// Kollar om det finns en vit pjäs till höger (för pjäsen) = no action
-			if (idRight === "playerToken1") {
+			if (idRight === ("playerToken1")|| ("pt1k")) {
 				moveId1   = null;
 			}
 			
 			console.log("Möjliga drag: " + moveId1 + " & " + moveId2);
+			console.log("Möjliga drag om kung: " + moveId3 + " & " + moveId4);
 			console.log("Möjlighet att ta: " + deleteId1 + " & " + deleteId2);
 			
 		} else {
@@ -160,6 +180,16 @@ function selectToken() {
 		$('.gameBox1').off('click');
 		$('#'+moveId1).bind('click', moveToken);
 		$('#'+moveId2).bind('click', moveToken);
+		
+		
+		//Kungens nya möjliga drag
+		$('#'+moveId3).bind('click', moveToken);
+		$('#'+moveId4).bind('click', moveToken);	
+		
+		
+		
+		
+		
 		$(thisTarget).bind('click', selectToken);
 				
 		});
@@ -287,7 +317,9 @@ $('#startBtn').click(function() {
 	console.log("Player 1 skapad.");
 	$("#1,#3,#5,#7,#10,#12,#14,#16,#17,#19,#21,#23").append(playerToken2);
 	console.log("Player 2 skapad.");
-
+    
+    
+    
 	//Stäng av startknapp
 	$('#startBtn').off('click');
 
@@ -308,8 +340,8 @@ $('#startBtn').click(function() {
 	// binden för att börja utföra spelgrejen
 	bindAllSelectToken();
 	checkMouse();
-	
-
+	$('#playerToken11').removeClass('playerToken1');
+	$('#playerToken11').addClass('pt1k');
 	//Slut STARTBUTTON BIND
 
 

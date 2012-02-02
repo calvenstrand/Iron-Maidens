@@ -141,7 +141,7 @@ class __TwigTemplate_bed390663f27ce08c54f3897175b4ed8 extends Twig_Template
 \t\t\t\t
 \t\t\t</div>
 \t\t
-\t\t\t\t<input id=\"startBtn\" type=\"submit\" value=\"Starta!\">
+\t\t\t\t<input id=\"startBtn\" type=\"submit\" value=\"Start Game!\">
 
   ";
     }
