@@ -76,8 +76,8 @@ class __TwigTemplate_a577a25532da6bbae7056ddf108c6ed1 extends Twig_Template
     public function block_stylesheets($context, array $blocks = array())
     {
         // line 11
-        echo "            <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
-            <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+        echo "            <!--<link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
+            <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>-->
             <link href=\"";
         // line 13
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("css/screen.css"), "html", null, true);
