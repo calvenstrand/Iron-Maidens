@@ -14,11 +14,15 @@ var moveWithId1;
 var moveWithId2;
 var deleteId1 = null;
 var deleteId2 = null;
+var deleteId3 = null;
+var	deleteId4 = null;
 var hasChild2;
 var hasChild1;
 var idRight;
 var idLeft;
-
+var idRightBack;
+var idLeftBack;
+var tempTarget;
 // The first player
 var player1 = {
     name: 'Player 1',
@@ -84,6 +88,8 @@ function selectToken() {
 	console.log("Klick på spelpjäs.");
 	deleteId1 = null;
 	deleteId2 = null;
+	deleteId3 = null;
+	deleteId4 = null;
 	target = $(this).attr("id");
 	thisTarget = ('#' + target);
 	//Ajax variabel som berättar klassen för json hämtningen
@@ -105,74 +111,156 @@ function selectToken() {
 		idRight = $('#' + moveId1).children().attr("class"); 
 		idLeft  = $('#' + moveId2).children().attr("class");
 		//kungens
-		idRightKing = $('#' + moveId3).children().attr("class");
-		idLeftKing  = $('#' + moveId4).children().attr("class");
 		
+		idRightBack  = $('#' + moveId3).children().attr("class");
+		idLeftBack = $('#' + moveId4).children().attr("class");
+		console.log ("m1: " + moveId1 + " m2: " + moveId2 + " m3: " + moveId3 + " m4: " + moveId4);
 		if (current_player == 0) {
 			
 			// Vits tur
 			// Kollar om det finns en svart pjäs till vänster (för pjäsen) = möjlighet att hoppa över
 			
-			if (idLeft  === ("playerToken2") || ("pt2k")) {
+			tempTarget = parseInt(target);
+			if (idLeft  === ("playerToken2")) {
+				console.log('vit-playertoken2 finns ner till höger');
 				moveId2   = target - 18;
 				deleteId2 = moveId2 + 9;
-				checkSecondToken();
+				
+				
 			}
 			
 			// Kollar om det finns en vit pjäs till vänster (för pjäsen) = no action
-			if (idLeft  === ("playerToken1") || ("pt1k")) {
+			if (idLeft  === ("playerToken1")) {
+				console.log('vit-playertoken1 finns ner till höger');
 				moveId2   = null;
 			}
 			
 			// Kollar om det finns en svart pjäs till höger (för pjäsen) = möjlighet att hoppa över
-			if (idRight === ("playerToken2")|| ("pt2k")) {
+			if (idRight === ("playerToken2")) {
+				console.log('vit-playertoken2 finns ner till vänster');
 				moveId1   = target - 14;
 				deleteId1 = moveId1 + 7;
-				checkSecondToken();
+				
+				
 			}
 			
 			// Kollar om det finns en vit pjäs till höger (för pjäsen) = no action
-			if (idRight === ("playerToken1")|| ("pt1k")) {
+			if (idRight === ("playerToken1")) {
+				console.log('vit-playertoken1 finns ner till vänster');
 				moveId1   = null;
 			}
 			
-			console.log("Möjliga drag: " + moveId1 + " & " + moveId2);
+			// Kungens
+			
+			if (idLeftBack  === ("playerToken2")) {
+				console.log('vit-playertoken2 finns upp till höger');
+				moveId4 = (tempTarget +14);
+				deleteId4 = moveId4 - 7;
+				
+				
+			}
+			
+			// Kollar om det finns en vit pjäs till vänster (för pjäsen) = no action
+			if (idLeftBack  === ("playerToken1")) {
+				console.log('vit-playertoken1 finns upp till höger');
+				moveId4   = null;
+			}
+			
+			// Kollar om det finns en svart pjäs till höger (för pjäsen) = möjlighet att hoppa över
+			if (idRightBack === ("playerToken2")) {
+				console.log('vit-playertoken2 finns upp till vänster');
+				moveId3   = (tempTarget + 18);
+				deleteId3 = moveId3 - 9;
+				
+				
+			}
+			
+			// Kollar om det finns en vit pjäs till höger (för pjäsen) = no action
+			if (idRightBack === ("playerToken1")) {
+				console.log('vit-playertoken1 finns upp till vänster');
+				moveId3   = null;
+			}
+			
+			checkSecondToken();
 			console.log("Möjliga drag om kung: " + moveId3 + " & " + moveId4);
+			console.log("Möjliga drag: " + moveId1 + " & " + moveId2);
 			console.log("Möjlighet att ta: " + deleteId1 + " & " + deleteId2);
+			console.log("kungen kan ta: " + deleteId3 + " & " + deleteId4);
 			
 		} else {
 			
 			// Svarts tur
 			// Skapar ny var och parsar den
-			var tempTarget;
+			
 			tempTarget = parseInt(target);
 			
 			// Kollar om det finns en vit pjäs till vänster (för pjäsen) = möjlighet att hoppa över
-			if (idLeft  === "playerToken1") {
-				moveId2    = (tempTarget + 18);
-				deleteId2  = moveId2 - 9;
-				checkSecondToken();
+			if (idLeftBack  === "playerToken1") {
+				console.log('svart-playertoken1 finns ner till vänster');
+				moveId4 = (tempTarget - 14);
+				deleteId4 = moveId4 + 7;
+				
+				
+				
 			}
 			
 			// Kollar om det finns en svart pjäs till vänster (för pjäsen) = no action
-			if (idLeft  === "playerToken2") {
-				moveId2    = null;
+			if (idLeftBack  === "playerToken2") {
+				console.log('svart-playertoken2 finns ner till vänster');
+				moveId4 = null;
+				
 			}
 			
 			// Kollar om det finns en vit pjäs till höger (för pjäsen) = möjlighet att hoppa över
-			if (idRight === "playerToken1") {
-				moveId1    = (tempTarget + 14);
-				deleteId1  = moveId1 - 7;
-				checkSecondToken();
+			if (idRightBack === "playerToken1") {
+				console.log('playertoken1 finns ner till höger');
+				moveId3 = (tempTarget - 18);
+				deleteId3 = moveId3 + 9;
+				
 			}
 			
 			// Kollar om det finns en svart pjäs till höger (för pjäsen) = no action
-			if (idRight  === "playerToken2") {
+			if (idRightBack === "playerToken2") {
+				console.log('svart-playertoken2 finns ner till höger');
+				moveId3 = null;
+				
+			}
+			
+			
+			// Kungens
+			
+			if (idLeft === "playerToken1") {
+				console.log('svart-playertoken1 finns upp till vänster');
+				moveId2 =(tempTarget + 18);
+				deleteId2 = moveId2 - 9;
+				
+			}
+			
+			// Kollar om det finns en vit pjäs till vänster (för pjäsen) = no action
+			if (idLeft === "playerToken2") {
+				console.log('svart-playertoken2 upp till vänster');
+				moveId2 = null;
+			}
+			
+			// Kollar om det finns en svart pjäs till höger (för pjäsen) = möjlighet att hoppa över
+			if (idRight === "playerToken1") {
+				console.log('svart-playertoken1 finns upp till höger');
+				moveId1 = (tempTarget + 14);
+				deleteId1 = moveId1 - 7;
+				
+			}
+			
+			// Kollar om det finns en vit pjäs till höger (för pjäsen) = no action
+			if (idRight === "playerToken2") {
+				console.log('svart-playertoken2 finns upp till höger');
 				moveId1 = null;
 			}
 			
+			checkSecondToken();
 			console.log("Möjliga drag: " + moveId2 + " & " + moveId1);
-			console.log("Möjlighet att ta: " + deleteId2 + " & " + deleteId1);
+			console.log("Möjliga drag om kung: " + moveId4 + " & " + moveId3);
+			console.log("Möjlighet att ta: " + deleteId1 + " & " + deleteId2);
+			console.log("kungen kan ta: " + deleteId4 + " & " + deleteId3);
 			
 		}
 		
@@ -187,9 +275,7 @@ function selectToken() {
 		$('#'+moveId4).bind('click', moveToken);	
 		
 		
-		
-		
-		
+			
 		$(thisTarget).bind('click', selectToken);
 				
 		});
@@ -229,18 +315,67 @@ function checkSecondToken () {
 	
 	// Kollar om det finns på högra...
 	if (idRight) {
+		console.log(' idright e sann!')
 		moveId1 = null;
 		deleteId1 = null;
 	}
 	
 	// Kollar om det finns på vänstra...
 	if (idLeft) {
+		console.log('idleft e sann!')
 		moveId2 = null;
 		deleteId2 = null;
 	}
+		//kungens
+		idRightBack  = $('#' + moveId3).children().attr("class");
+		idLeftBack = $('#' + moveId4).children().attr("class");
 	
+	// Kollar om det finns på högra...
+	if (idLeftBack) {
+		console.log('cskt idleftback e sann!')
+		moveId4 = null;
+		deleteId4 = null;
+	}
+	
+	// Kollar om det finns på vänstra...
+	 if (idRightBack) {
+		console.log('cskt idrightback e sann!')
+		moveId3 = null;
+		deleteId3 = null;
+	}
 }
 
+
+
+
+
+function checkIfGoRoyal (){
+	//Funktion för att kröna bricka till kung om man är på motsatt sida
+	if(current_player === 0){
+	var p1Royal = $('.playerToken1').parent();
+	$(p1Royal).each(function(i) {
+		if($(this).attr('id') < 9){
+			console.log('Upgrade YAO!');
+			$(this).children().removeClass('playerToken1');
+			$(this).children().addClass('pt1k');
+			
+		}else {//nothing
+			}
+		
+	});
+	}else if(current_player === 1){
+	var p2Royal = $('.playerToken2').parent();
+	$(p2Royal).each(function(i) {
+		if($(this).attr('id') > 56){
+			console.log('upgrade YAO!');
+			$(this).children().removeClass('playerToken2');
+			$(this).children().addClass('pt2k');
+		}else {//Nothing
+			}
+		
+	});
+}
+}
 
 
 function moveToken() {
@@ -258,6 +393,8 @@ function moveToken() {
 		var curPos = parseInt(currentPosition);
 		var mId1 = parseInt(moveId1);
 		var mId2 = parseInt(moveId2);
+		var mId3 = parseInt(moveId3);
+		var mId4 = parseInt(moveId4);
 		console.log("Flyttade till: " + currentPosition);
 		
 		// Kollar om man valde att döda möjligheten: deleteId1 (bra Sverige), samt tar bort
@@ -274,6 +411,24 @@ function moveToken() {
 			deleteId2 = null;
 		}
 		
+		// Kollar om man valde att döda möjligheten: deleteId2 (bra Sverige), samt tar bort
+		if ((deleteId3 != null) && (curPos === mId3)) {
+			$('#' + deleteId3 + '>div').remove();
+			console.log("Du tog: " + deleteId3);
+			deleteId3 = null;
+		}
+		
+		// Kollar om man valde att döda möjligheten: deleteId2 (bra Sverige), samt tar bort
+		if ((deleteId4 != null) && (curPos === mId4)) {
+			$('#' + deleteId4 + '>div').remove();
+			console.log("Du tog: " + deleteId4);
+			deleteId4 = null;
+		}
+		
+		
+		
+		
+		checkIfGoRoyal();
 		// Rinse and repeat...
 		
 		//Sätt bakgrunden på förra till vit igen
@@ -340,8 +495,8 @@ $('#startBtn').click(function() {
 	// binden för att börja utföra spelgrejen
 	bindAllSelectToken();
 	checkMouse();
-	$('#playerToken11').removeClass('playerToken1');
-	$('#playerToken11').addClass('pt1k');
+	
+	
 	//Slut STARTBUTTON BIND
 
 
