@@ -180,7 +180,7 @@ function selectToken() {
 				console.log('vit-playertoken1 finns upp till vänster');
 				moveId3   = null;
 			}
-			
+			else { console.log ('ingen ivägen');}
 			checkSecondToken();
 			console.log("VIT BRICKA");
 			console.log("                          UPP");
@@ -261,7 +261,7 @@ function selectToken() {
 				console.log('svart-playertoken2 finns upp till höger');
 				moveId1 = null;
 			}
-			
+			else { console.log ('ingen ivägen');}
 			checkSecondToken();
 			console.log("SVART BRICKA");
 			console.log("                          UPP");

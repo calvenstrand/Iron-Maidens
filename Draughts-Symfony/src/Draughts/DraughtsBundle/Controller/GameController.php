@@ -14,7 +14,12 @@ class GameController extends Controller
 		//$test->checkColor(45, 'playerToken1');
 		
 		
-		return new Response(json_encode(array('newId1'=>$test->newId1,'newId2'=>$test->newId2)));
+		return new Response(json_encode(array
+		('newId1'=>$test->newId1
+		,'newId2'=>$test->newId2
+		,'newId3'=>$test->newId3
+		,'newId4'=>$test->newId4)
+		));
 		
 		
 	}
