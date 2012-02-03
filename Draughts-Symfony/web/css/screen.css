@@ -31,7 +31,7 @@ body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 	width: 75px;
 	height: 75px;
 	border-radius: 90px;
-	background: url("../img/pT1K.png")
+	background: url("../img/pt1k.png")
 }
 
 .playerToken2 {
@@ -45,7 +45,7 @@ body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 	width: 75px;
 	height: 75px;
 	border-radius: 90px;
-	background: url("../img/pT2K.png")
+	background: url("../img/pt2k.png")
 }
 
 /* ==== Header ==== */
