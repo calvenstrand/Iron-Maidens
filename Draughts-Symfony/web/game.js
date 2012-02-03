@@ -85,7 +85,7 @@ function bindAllSelectToken(){
 
 // startkollningen
 function selectToken() {
-	console.log("Klick på spelpjäs.");
+	//console.log("Klick på spelpjäs.");
 	deleteId1 = null;
 	deleteId2 = null;
 	deleteId3 = null;
@@ -114,7 +114,7 @@ function selectToken() {
 		
 		idRightBack  = $('#' + moveId3).children().attr("class");
 		idLeftBack = $('#' + moveId4).children().attr("class");
-		console.log ("m1: " + moveId1 + " m2: " + moveId2 + " m3: " + moveId3 + " m4: " + moveId4);
+		//console.log ("m1: " + moveId1 + " m2: " + moveId2 + " m3: " + moveId3 + " m4: " + moveId4);
 		if (current_player == 0) {
 			
 			// Vits tur
@@ -182,10 +182,16 @@ function selectToken() {
 			}
 			
 			checkSecondToken();
+			console.log("VIT BRICKA");
+			console.log("                          UPP");
 			console.log("Möjliga drag om kung: " + moveId3 + " & " + moveId4);
-			console.log("Möjliga drag: " + moveId1 + " & " + moveId2);
-			console.log("Möjlighet att ta: " + deleteId1 + " & " + deleteId2);
-			console.log("kungen kan ta: " + deleteId3 + " & " + deleteId4);
+			console.log("Möjliga drag:         " + moveId1 + " & " + moveId2);
+			console.log("                          NER");
+			console.log("");
+			console.log("                          UPP");
+			console.log("Möjlighet att ta:     " + deleteId1 + " & " + deleteId2);
+			console.log("kungen kan ta:        " + deleteId3 + " & " + deleteId4);
+			console.log("                          NER");
 			
 		} else {
 			
@@ -257,11 +263,16 @@ function selectToken() {
 			}
 			
 			checkSecondToken();
-			console.log("Möjliga drag: " + moveId2 + " & " + moveId1);
+			console.log("SVART BRICKA");
+			console.log("                          UPP");
+			console.log("Möjliga drag:         " + moveId2 + " & " + moveId1);
 			console.log("Möjliga drag om kung: " + moveId4 + " & " + moveId3);
-			console.log("Möjlighet att ta: " + deleteId1 + " & " + deleteId2);
-			console.log("kungen kan ta: " + deleteId4 + " & " + deleteId3);
-			
+			console.log("                          NER");
+			console.log("");
+			console.log("                          UPP");
+			console.log("Möjlighet att ta:     " + deleteId2 + " & " + deleteId1);
+			console.log("kungen kan ta:        " + deleteId4 + " & " + deleteId3);
+			console.log("                          NER");
 		}
 		
 		//Eventuellt baka in dessa i bindallSelectToken o göra om den till en bindfunktion för alla.
@@ -469,9 +480,9 @@ $('#startBtn').click(function() {
 
 	// Lägg ut alla brickor, playertokens på dessa IDn
 	$("#64,#62,#60,#58,#55,#53,#51,#49,#48,#46,#44,#42").append(playerToken1);
-	console.log("Player 1 skapad.");
+	//console.log("Player 1 skapad.");
 	$("#1,#3,#5,#7,#10,#12,#14,#16,#17,#19,#21,#23").append(playerToken2);
-	console.log("Player 2 skapad.");
+	//console.log("Player 2 skapad.");
     
     
     

@@ -44,9 +44,9 @@ class Rules {
 		} else if ($pt == "playerToken2") {
 			$this->getMovesBlack($id);
 		} else if ($pt == "pt1k"){
-			$this->godMode($id);
+			$this->godModeWhite($id);
 		} else if ($pt == "pt2k"){
-			$this->godMode($id);
+			$this->godModeBlack($id);
 		}
 	}
 	
@@ -66,7 +66,7 @@ class Rules {
 		} else {
 			
 			
-			$this->godMode($id);
+			$this->godModeWhite($id);
 		}
 	}
 	
@@ -84,12 +84,12 @@ class Rules {
 			$this->newId2 += 9;
 			$this->checkBlackSides($id, $newId1, $newId2);
 		} else {
-			$this->godMode($id);
+			$this->godModeBlack($id);
 		}
 	}
 	
 	// Bestämmer hur krönta brickor får röra sig
-	public function godMode ($id) {
+	public function godModeWhite ($id) {
 		global $id1;
 		global $newId1;
 		$this->newId1 = $id;
@@ -108,7 +108,31 @@ class Rules {
 			$this->newId2 -= 9;
 			$this->newId3 += 9;
 			$this->newId4 += 7;
-			$this->checkAllSides($id, $newId1, $newId2, $newId3, $newId4);
+			$this->checkAllSidesWhite($id, $newId1, $newId2, $newId3, $newId4);
+		}
+	}
+	
+	// Bestämmer hur krönta brickor får röra sig
+	public function godModeBlack ($id) {
+		global $id1;
+		global $newId1;
+		$this->newId1 = $id;
+		global $newId2;
+		$this->newId2 = $id;
+		
+		global $id3;
+		global $newId3;
+		$this->newId3 = $id;
+		global $newId4;
+		$this->newId4 = $id;
+		
+		$this->id1 = intval($id);
+		if (($id1 -7 >= 1) || ($id1 -9 >= 1) || ($id1 +7 <= 64) || ($id1 +9 <= 64)) {
+			$this->newId1 += 7;
+			$this->newId2 += 9;
+			$this->newId3 -= 9;
+			$this->newId4 -= 7;
+			$this->checkAllSidesBlack($id, $newId1, $newId2, $newId3, $newId4);
 		}
 	}
 	
@@ -143,7 +167,7 @@ class Rules {
 	}
 	
 	//Kontrollerar så att man bara kan göra korrekta drag längst sidorna för Kungar	
-	public function checkAllsides ($id, $newId1, $newId2, $newId3, $newId4) {
+	public function checkAllsidesWhite ($id, $newId1, $newId2, $newId3, $newId4) {
 		
 		//kollar den högra sidan
 		if(($id == 49) || ($id == 33) || ($id == 17) || ($id == 1)) {
@@ -161,6 +185,46 @@ class Rules {
 				}
 				if (($this->newId4 > 64)){
 					$this->newId4 = NULL;
+				}
+				if (($this->newId1 < 1) ){
+					$this->newId1 = NULL;
+				}
+				if (($this->newId2 < 1)){
+					$this->newId2 = NULL;
+				}
+		else {
+				
+			$this->lol = ($this->newId1 . " " . $this->newId2) && ($this->newId3 . " " . $this->newId4);
+			
+			
+		}
+		
+	}
+	
+	//Kontrollerar så att man bara kan göra korrekta drag längst sidorna för Kungar	
+	public function checkAllsidesBlack ($id, $newId1, $newId2, $newId3, $newId4) {
+		
+		//kollar den högra sidan
+		if(($id == 49) || ($id == 33) || ($id == 17) || ($id == 1)) {
+			$this->newId1 = NULL;
+			$this->newId3 = NULL;
+		//Kollar den vänstra sidan	
+		} if (($id == 64) || ($id == 48) || ($id == 32) || ($id == 16)) {
+			$this->newId2 = NULL;
+			$this->newId4 = NULL;
+			
+		} 
+		if (($this->newId3 < 1) ){
+					$this->newId3 = NULL;
+				}
+				if (($this->newId4 < 1)){
+					$this->newId4 = NULL;
+				}
+				if (($this->newId1 > 64) ){
+					$this->newId1 = NULL;
+				}
+				if (($this->newId2 > 64)){
+					$this->newId2 = NULL;
 				}
 		else {
 				
