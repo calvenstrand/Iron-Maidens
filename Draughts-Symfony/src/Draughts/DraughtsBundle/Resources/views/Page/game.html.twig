@@ -1,0 +1,15 @@
+{# src/Draughts/DraughtsBundle/Resources/views/Page/contact.html.twig #}
+{% extends 'DraughtsBundle:Page:index.html.twig' %}
+
+{% block sidebar %}
+	
+		<h2>Välkommen {{player1}} och {{player2}}</h2>
+		<p><span style="font-size:2em; color: blue;">{{player1}}</span> har vita pjäser</p>
+		<p><span style="font-size:2em; color: red;">{{player2}}</span> har svart pjäser</p>
+		<input id="startBtn" type="submit" value="Starta spelet!">
+		
+{% endblock %}
+{% block javascripts %} 
+        <script type="text/javascript" src="jquery-1.7.min.js"></script>
+        <script type="text/javascript" src="game.js"></script>
+  {% endblock %}

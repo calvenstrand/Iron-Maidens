@@ -6,17 +6,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Draughts\DraughtsBundle\Entity\Draughts;
 use Symfony\Component\HttpFoundation\Response;
+use Draughts\DraughtsBundle\Entity\Enquiry;
+use Draughts\DraughtsBundle\Entity\theGame;
+use Draughts\DraughtsBundle\Form\EnquiryType;
 
 
 
 class DefaultController extends Controller
 {
-	public function createAction()
+	public function create1Action($userName, $positionId)
 	{
 	    $name = new Draughts();
-	    $name->setName('A Player');
+	    $name->setName($userName);
 	    $name->setPlayerId('1');
-	    $name->setDescription('Lorem ipsum dolor');
+	    $name->setDescription('Player 1');
+		$name->setPositionId($positionId);
 	
 	    $em = $this->getDoctrine()->getEntityManager();
 	    $em->persist($name);
@@ -24,10 +28,74 @@ class DefaultController extends Controller
 	
 	    return new Response('Created player id '.$name->getId());
 	}
-    public function indexAction($name)
+	
+	public function create2Action($userName, $positionId)
+	{
+	    $name = new Draughts();
+	    $name->setName($userName);
+	    $name->setPlayerId('1');
+	    $name->setDescription('Player 2');
+		$name->setPositionId($positionId);
+	
+	    $em = $this->getDoctrine()->getEntityManager();
+	    $em->persist($name);
+	    $em->flush();
+	
+	    return new Response('Created player id '.$name->getId());
+	}
+	
+    public function indexAction()
     {
-        return $this->render('DraughtsBundle:Default:index.html.twig', array('name' => $name));
+    	
+    $enquiry = new Enquiry();
+    $form = $this->createForm(new EnquiryType(), $enquiry);
+
+    $request = $this->getRequest();
+    if ($request->getMethod() == 'POST') {
+        $form->bindRequest($request);
+
+        if ($form->isValid()) {
+            // Perform some action, such as sending an email
+
+            // Redirect - This is important to prevent users re-posting
+            // the form if they refresh the page
+            return $this->redirect($this->generateUrl('DraughtsBundle_form'));
+        }
     }
+
+    return $this->render('DraughtsDraughtsBundle:Page:index.html.twig', array(
+        'form' => $form->createView()
+    ));
+    }
+	
+	
+	
+	public function formAction()  //Hämta och lägger användarnamn och id i databasen
+{
+	$player1 = $_POST['form']['player1'];
+	$player2 = $_POST['form']['player2'];
+	$id = $_POST['form']['id'];
+	/*return $this->render('DraughtsBundle:Page:form.html.twig', array(
+		'player1' => $player1,
+		'player2' => $player2,
+		'id'=>$id
+	));
+	*/
+	        $current_game = new theGame(); // En instans av classen theGame som finss i TheGame filen
+			$current_game -> createTheGame($player1, $player2, $id); // Hämta metoden creatTheGame som finns i Enquiery
+	
+			$em = $this -> getDoctrine()-> getEntityManager(); //Anslutning till database med hjälp av doctrine
+			$em -> persist($current_game); // Lägger allt i database
+			$em -> flush(); // Ordna gör i ordning allt i database        
+	        $this -> id = $current_game -> getId();   
+	//	}
+        return $this -> render('DraughtsBundle:Page:form.html.twig', array(
+        	'player1' => $player1,
+			'player2' => $player2,
+			'id'=>$id
+    	));    
+	}
+
 	public function showAction($id) {
 		
 	    $name = $this->getDoctrine()
@@ -43,18 +111,20 @@ class DefaultController extends Controller
     // do something, like pass the $product object into a template
 	}
 	
-	public function updateAction($id) {
+	public function updateAction($id, $positionId) {
 	    $em = $this->getDoctrine()->getEntityManager();
 	    $name = $em->getRepository('DraughtsBundle:Draughts')->find($id);
-	
+		$name->getPositionId($id);
+		
+		
 	    if (!$name) {
 	        throw $this->createNotFoundException('No name found for id '.$id);
 	    }
-	
-	    $name->setName('New name!');
+	    $name->setPositionId($positionId);
 	    $em->flush();
-		return new Response('Updated player id'.$name->getId());
+		return new Response('Den nya positionen är: '.$name->getPositionId($positionId));
 	    return $this->redirect($this->generateUrl('homepage'));
+		
 	}
 
 	public function deleteAction($id) {

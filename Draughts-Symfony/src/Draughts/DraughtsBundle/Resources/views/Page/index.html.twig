@@ -114,15 +114,42 @@
 				<div class="letterBox">h</div>
 				
 			</div>
-		
-				<input id="startBtn" type="submit" value="Start Game!">
-
   {% endblock %}  
-  {% block form %}
+ 
+{% block sidebar %}  <!-- sidebar -->
+  <form action="{{ path('DraughtsBundle_form') }}" method="post" >
+		<h2>Welcome to the Game</h2>	
+			<input type="text" id="playerName1" name="form[player1]" required="required" placeholder="Player1 - White"/><br /><br />
+			<input type="text" id="playerName2" name="form[player2]" required="required" placeholder="Player2 - Black"/><br /><br />
+			<input type="number" id="sessionID"  name="form[id]" placeholder="Ange ditt spel ID"/>
+			<input id="startBtn" type="submit" value="Logga in">
+			
+  </form>
+{% endblock %}
+
+{% block form %}
   			
-		  {% endblock %}
+{% endblock %}
+		  
+{% block score %}
+	<div class="scoreBoard">
+		<span style="font-size:2em;">Player1 - White</span>
+		<div class="p1s">
+			<div class="playerToken2"></div><div class="playerToken2"></div><div class="playerToken2"></div><div class="playerToken2"></div>
+			<div class="playerToken2"></div><div class="playerToken2"></div><div class="playerToken2"></div><div class="playerToken2"></div>
+			<div class="playerToken2"></div><div class="playerToken2"></div><div class="playerToken2"></div><div class="playerToken2"></div>
+		</div>
+	
+		<span style="font-size:2em;">Player2 - Black</span>
+		<div class="p2s">
+			<div class="playerToken1"></div><div class="playerToken1"></div><div class="playerToken1"></div><div class="playerToken1"></div> 
+			<div class="playerToken1"></div><div class="playerToken1"></div><div class="playerToken1"></div><div class="playerToken1"></div> 
+			<div class="playerToken1"></div><div class="playerToken1"></div><div class="playerToken1"></div><div class="playerToken1"></div> 
+		</div>
+	</div>
+{% endblock %}
   
   {% block javascripts %} 
         <script type="text/javascript" src="jquery-1.7.min.js"></script>
         <script type="text/javascript" src="game.js"></script>
-        {% endblock %}
+  {% endblock %}

@@ -10,9 +10,15 @@ DraughtsBundle_homepage:
     requirements:
         _method:  GET
         
-DraughtsBundle_databaseCreate:
-    pattern:  /add
-    defaults: { _controller: DraughtsBundle:Default:create }
+DraughtsBundle_databaseCreate1:
+    pattern:  /add1/{userName}/{positionId}
+    defaults: { _controller: DraughtsBundle:Default:create1 }
+    requirements:
+        _method:  GET
+
+DraughtsBundle_databaseCreate2:
+    pattern:  /add2/{userName}/{positionId}
+    defaults: { _controller: DraughtsBundle:Default:create2 }
     requirements:
         _method:  GET
         
@@ -23,7 +29,7 @@ DraughtsBundle_databaseShow:
         _method:  GET
         
 DraughtsBundle_databaseUpdate:
-    pattern:  /update/{id}
+    pattern:  /update/{id}/{positionId}
     defaults: { _controller: DraughtsBundle:Default:update }
     requirements:
         _method:  GET
@@ -35,8 +41,25 @@ DraughtsBundle_databaseDelete:
         _method:  GET
         
 DraughtsBundle_game:
-    pattern: /game
+    pattern: /app_dev.php/game
     defaults: { _controller: DraughtsBundle:Game:game }
     requirements:
         _method: GET
-      
+        
+DraughtsBundle_board:
+    pattern: /app_dev.php/board
+    defaults: { _controller: DraughtsBundle:Board:board }
+    requirements:
+        _method: GET        
+        
+DraughtsBundle_flush:
+    pattern: /flush
+    defaults: { _controller: DraughtsBundle:Game:newBoard }
+    requirements:
+        _method: GET
+        
+DraughtsBundle_form:
+    pattern: /form
+    defaults: { _controller: DraughtsBundle:Default:form }
+    requirements:
+        _method: GET|POST

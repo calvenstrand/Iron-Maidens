@@ -33,11 +33,15 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_step' => true,
        '_configurator_final' => true,
        'DraughtsBundle_homepage' => true,
-       'DraughtsBundle_databaseCreate' => true,
+       'DraughtsBundle_databaseCreate1' => true,
+       'DraughtsBundle_databaseCreate2' => true,
        'DraughtsBundle_databaseShow' => true,
        'DraughtsBundle_databaseUpdate' => true,
        'DraughtsBundle_databaseDelete' => true,
        'DraughtsBundle_game' => true,
+       'DraughtsBundle_board' => true,
+       'DraughtsBundle_flush' => true,
+       'DraughtsBundle_form' => true,
     );
 
     /**
@@ -161,9 +165,14 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\PageController::indexAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
     }
 
-    private function getDraughtsBundle_databaseCreateRouteInfo()
+    private function getDraughtsBundle_databaseCreate1RouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::createAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/add',  ),));
+        return array(array (  0 => 'userName',  1 => 'positionId',), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::create1Action',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'positionId',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'userName',  ),  2 =>   array (    0 => 'text',    1 => '/add1',  ),));
+    }
+
+    private function getDraughtsBundle_databaseCreate2RouteInfo()
+    {
+        return array(array (  0 => 'userName',  1 => 'positionId',), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::create2Action',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'positionId',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'userName',  ),  2 =>   array (    0 => 'text',    1 => '/add2',  ),));
     }
 
     private function getDraughtsBundle_databaseShowRouteInfo()
@@ -173,7 +182,7 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function getDraughtsBundle_databaseUpdateRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::updateAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  1 =>   array (    0 => 'text',    1 => '/update',  ),));
+        return array(array (  0 => 'id',  1 => 'positionId',), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::updateAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'positionId',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/update',  ),));
     }
 
     private function getDraughtsBundle_databaseDeleteRouteInfo()
@@ -183,6 +192,21 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function getDraughtsBundle_gameRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\GameController::gameAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/game',  ),));
+        return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\GameController::gameAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/app_dev.php/game',  ),));
+    }
+
+    private function getDraughtsBundle_boardRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\BoardController::boardAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/app_dev.php/board',  ),));
+    }
+
+    private function getDraughtsBundle_flushRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\GameController::newBoardAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/flush',  ),));
+    }
+
+    private function getDraughtsBundle_formRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::formAction',), array (  '_method' => 'GET|POST',), array (  0 =>   array (    0 => 'text',    1 => '/form',  ),));
     }
 }

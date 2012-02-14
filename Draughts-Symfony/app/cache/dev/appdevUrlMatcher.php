@@ -148,15 +148,25 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
         not_DraughtsBundle_homepage:
 
-        // DraughtsBundle_databaseCreate
-        if ($pathinfo === '/add') {
+        // DraughtsBundle_databaseCreate1
+        if (0 === strpos($pathinfo, '/add1') && preg_match('#^/add1/(?P<userName>[^/]+?)/(?P<positionId>[^/]+?)$#xs', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
-                goto not_DraughtsBundle_databaseCreate;
+                goto not_DraughtsBundle_databaseCreate1;
             }
-            return array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::createAction',  '_route' => 'DraughtsBundle_databaseCreate',);
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::create1Action',)), array('_route' => 'DraughtsBundle_databaseCreate1'));
         }
-        not_DraughtsBundle_databaseCreate:
+        not_DraughtsBundle_databaseCreate1:
+
+        // DraughtsBundle_databaseCreate2
+        if (0 === strpos($pathinfo, '/add2') && preg_match('#^/add2/(?P<userName>[^/]+?)/(?P<positionId>[^/]+?)$#xs', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_DraughtsBundle_databaseCreate2;
+            }
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::create2Action',)), array('_route' => 'DraughtsBundle_databaseCreate2'));
+        }
+        not_DraughtsBundle_databaseCreate2:
 
         // DraughtsBundle_databaseShow
         if (0 === strpos($pathinfo, '/show') && preg_match('#^/show/(?P<id>[^/]+?)$#xs', $pathinfo, $matches)) {
@@ -169,7 +179,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         not_DraughtsBundle_databaseShow:
 
         // DraughtsBundle_databaseUpdate
-        if (0 === strpos($pathinfo, '/update') && preg_match('#^/update/(?P<id>[^/]+?)$#xs', $pathinfo, $matches)) {
+        if (0 === strpos($pathinfo, '/update') && preg_match('#^/update/(?P<id>[^/]+?)/(?P<positionId>[^/]+?)$#xs', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
                 goto not_DraughtsBundle_databaseUpdate;
@@ -189,7 +199,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         not_DraughtsBundle_databaseDelete:
 
         // DraughtsBundle_game
-        if ($pathinfo === '/game') {
+        if ($pathinfo === '/app_dev.php/game') {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
                 goto not_DraughtsBundle_game;
@@ -197,6 +207,36 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\GameController::gameAction',  '_route' => 'DraughtsBundle_game',);
         }
         not_DraughtsBundle_game:
+
+        // DraughtsBundle_board
+        if ($pathinfo === '/app_dev.php/board') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_DraughtsBundle_board;
+            }
+            return array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\BoardController::boardAction',  '_route' => 'DraughtsBundle_board',);
+        }
+        not_DraughtsBundle_board:
+
+        // DraughtsBundle_flush
+        if ($pathinfo === '/flush') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_DraughtsBundle_flush;
+            }
+            return array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\GameController::newBoardAction',  '_route' => 'DraughtsBundle_flush',);
+        }
+        not_DraughtsBundle_flush:
+
+        // DraughtsBundle_form
+        if ($pathinfo === '/form') {
+            if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                goto not_DraughtsBundle_form;
+            }
+            return array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\DefaultController::formAction',  '_route' => 'DraughtsBundle_form',);
+        }
+        not_DraughtsBundle_form:
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }

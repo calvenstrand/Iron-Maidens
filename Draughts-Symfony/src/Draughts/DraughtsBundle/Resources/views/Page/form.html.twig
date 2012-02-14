@@ -1,0 +1,17 @@
+{# src/Draughts/DraughtsBundle/Resources/views/Page/form.html.twig #}
+{% extends 'DraughtsBundle:Page:index.html.twig' %}
+
+{% block sidebar %}
+		<h2>Välkommen {{player1}} och {{player2}}</h2>
+		<p><span style="font-size:2em; color: blue;">{{player1}}</span> har vita pjäser</p>
+		<p><span style="font-size:2em; color: red;">{{player2}}</span> har svarta pjäser</p>
+		<p>Spelid: <span style="font-size:2em; color: white;">{{id}}</span>(spara ditt ID) </p>
+		<button id="startBtn">Start</button>
+		Felmeddelande: <span id="errorMsg"> </span>
+{% endblock %}
+  
+ {% block javascripts %}
+ 
+ 			<script src="{{ asset('jquery-1.7.min.js') }}" type="text/javascript"></script>			
+            <script src="{{ asset('game.js') }}" type="text/javascript"></script>
+  {% endblock %}
