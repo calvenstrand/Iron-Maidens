@@ -7,10 +7,10 @@ body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 #wrapper a { text-decoration: none; color: #F48A00; }
 #wrapper span.highlight { color: #F48A00; }
 
-/* ==== Sidebar ==== */
-#sidebar {background: #000; color: #fff; float:right; width: 239px; padding: 5px; margin: 10px; display: inline-block; }
+/* ==== Sidebar ==== 
+#sidebar {background: #000; color: #fff; float:right; height:225px; width: 239px; padding: 5px; margin: 10px; display: inline-block; }
 #sidebar h2{font-size: 14px; padding: 5px 0px 5px 0px;}
-
+*/
 /* ==== Spelplanen ==== */
 #mainGameWrapper { width: 616px; height: 616px; border: 1px solid black; margin: 20px auto 0px auto; background-color: #fff;  -moz-box-shadow: 0 0 5px 2px #000; -webkit-box-shadow: 0 0 5px 2px#000; box-shadow: 0 0 5px 2px #000;}
 #gameWrapper { width: 600px; height: 600px; float: right; background: url("../img/boardbg.png"); }
@@ -55,6 +55,22 @@ body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 	box-shadow: inset 2px 2px 4px 2px ; 
 }
 
+/* ==== LoginBoard ==== */
+#loginBoard {
+	float: right;
+	width: 275px;
+	border: 1px solid #000;
+	padding:10px;
+	padding-bottom: 15px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px; 
+	margin-bottom:10px;
+	-webkit-box-shadow: inset 2px 2px 4px 2px ;
+	-moz-box-shadow: inset 2px 2px 4px 2px ;
+	box-shadow: inset 2px 2px 4px 2px ; 
+}
+
 /* ==== Spelpjäser ==== */
 .playerToken1 {
 	float:left;
@@ -65,6 +81,7 @@ body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 }
 
 .pt1k {
+	float: left;
 	width: 75px;
 	height: 75px;
 	border-radius: 90px;
@@ -80,6 +97,7 @@ body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 }
 
 .pt2k {
+	float: left;
 	width: 75px;
 	height: 75px;
 	border-radius: 90px;
@@ -87,9 +105,8 @@ body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 }
 
 /* ==== Startknappen ==== */
-#startBtn,#startBtn1  { 
-	margin-top: 10px; 
-	width: 240px; 
+#startBtn,#startBtn1,#loginBtn  {  
+	width: 275px;
 	line-height: 26px; 
 	font-size: 20px; 
 	min-height: 26px; 
@@ -112,6 +129,57 @@ body { line-height: 1;font-family: Arial, Helvetica, sans-serif;font-size: 12px;
 		to(#000000));
 }
 
+#loginWrapper {
+	float: right;
+	height: 350px;
+	width: 285px;
+	margin: 27px 10px 0px 0px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px; 
+	
+}
+
+
+#playerName1, #playerName2, #sessionID {
+	margin: 0px auto 0px auto;
+}
 /* ==== FOOTER ==== */
 #footer { border-top: 1px solid #ccc; clear: both; text-align: center; padding: 10px; color: #aaa; }
 
+/* ==== NOTIFICATION ==== */
+
+.notification
+{
+	#background-color: #FF0099;
+#	border: 1px solid black;
+	bottom: 15%;
+	left: 70%;
+	height: 150px;
+	margin: 200px 10px 50px 100px;
+	position: absolute;
+	width: 250px;
+}
+
+.talkBox
+{
+	background: url('../img/bubbla.png');
+	float: left;
+	height: 125px;
+	width: 150px;
+}
+
+.talkBox p
+{
+	padding: 15px;
+
+}
+
+.paperclip
+{
+	background: url('../img/paperclip.png');
+	float: left;
+	height: 150px;
+	width: 80px;
+
+}

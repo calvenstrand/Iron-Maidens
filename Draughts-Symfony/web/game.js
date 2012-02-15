@@ -26,6 +26,7 @@ var idLeftBack;
 var tempTarget;
 var nextPlayerTurn;
 var works;
+var testArray;
 // The first player
 var player1 = {
     name: 'Player 1',
@@ -39,7 +40,7 @@ var player2 = {
     wins: 0
 	};
 var players = [player1, player2];
-var current_player = 1;
+var current_player = 0;
 $('#errorMsg').hide();
 //Funktionen som disablar klick på motspelarens pjäser
 function disable(){
@@ -203,42 +204,157 @@ function updateBoard () {
 			} if (zeAlert[x].values == '22') {
 				$('#' + zeAlert[x].keys).append(pt2k);
 			} if ((zeAlert[x].keys == '0') && (zeAlert[x].values == '1')) {
-				$('.p1s').append(playerToken1l);
+				$('.p2s').append(playerToken1l);
 			} if ((zeAlert[x].keys == '0') && (zeAlert[x].values == '11')) {
-				$('.p1s').append(pt1k);
+				$('.p2s').append(pt1k);
 			} if ((zeAlert[x].keys == '0') && (zeAlert[x].values == '2')) {
-				$('.p2s').append(playerToken2l);
+				$('.p1s').append(playerToken2l);
 			} if ((zeAlert[x].keys == '0') && (zeAlert[x].values == '22')) {
-				$('.p2s').append(pt2k);
+				$('.p1s').append(pt2k);
 			}
 		}
+		
 		disable();
 		bindAllSelectToken();
+		
+		if (current_player == 0) {
+			randomMessageWhite();
+		} else if (current_player == 1) {
+			randomMessageBlack();
+		}
+		
+		whiteArray = new Array();
+		for (var x in zeAlert) {
+			if (((zeAlert[x].keys == '0') && (zeAlert[x].values == '1')) || ((zeAlert[x].keys == '0') && (zeAlert[x].values == '11'))) {
+				whiteArray.push("Dead black");
+			} else {}
+		}
+		if (whiteArray.length == 12) {
+			$.getJSON('app_dev.php/flush', function (data) {
+				console.log('Nytt bräde');
+			});
+			$('#bubbleText').text('Svart vann!');
+			$('#startBtn').attr('value', 'Starta nytt spel');
+			$('#startBtn').bind('click', function (e) {
+				location.reload();
+			});
+			$('#startBtn').fadeIn(1000);
+		}
+		
+		blackArray = new Array();
+		for (var x in zeAlert) {
+			if (((zeAlert[x].keys == '0') && (zeAlert[x].values == '2')) || ((zeAlert[x].keys == '0') && (zeAlert[x].values == '22'))) {
+				blackArray.push("Dead black");
+			} else {}
+		}
+		if (blackArray.length == 12) {
+			$.getJSON('app_dev.php/flush', function (data) {
+				console.log('Nytt bräde');
+			});
+			$('#bubbleText').text('Vit vann!');
+			$('#startBtn').attr('value', 'Starta nytt spel');
+			$('#startBtn').bind('click', function (e) {
+				location.reload();
+			});
+			$('#startBtn').fadeIn(1000);
+		}
 	});
 	
 }
 
-$('#startBtn').click(function () {
-	//Stäng av startknapp
-	$('#startBtn').off('click');
-	//Playertoken 1 GE ID!
-	$(".playerToken1").each(function(i) {
-		$(this).attr('id', 'playerToken1' + (i + 1));
-	});
-	//PlayerToken 2 GE ID!
-	$(".playerToken2").each(function(i) {
-		$(this).attr('id', 'playerToken2' + (i + 1));
-	});
-	//   MUY IMPORTANTE
-	//
-	// binden för att börja utföra spelgrejen
-	updateBoard();
-	checkMouse();
-});
-//funktion för att kolla mouseover ID
-function checkMouse() {
-	$('.gameBox1').mouseover(function() {
-		mouseOverId = $(this).attr("id");
-	});
-	//Slut CHECKMOUSE
+$('#startBtn').click(function (e) {
+			$('#startBtn').fadeOut(1000);
+	
+        console.log('knapp funkar');
+        bindForm();
+        e.preventDefault();
+        });
+        //funktion för att kolla mouseover ID
+        function checkMouse() {
+        $('.gameBox1').mouseover(function() {
+        mouseOverId = $(this).attr("id");
+        });
+        //Slut CHECKMOUSE
+        }
+
+        function bindForm(){
+        $('#formId').submit(function(e) {
+        e.preventDefault();
+        });
+        var name1 = $('#playerName1').val();
+        var name2 = $('#playerName2').val();
+        if ((name1 != '') && (name2 != '')){
+        $.getJSON("app_dev.php/form?player1="+name1+"&player2="+name2, function (formData) {
+        var spelare1 = formData.player1;
+        var spelare2 = formData.player2;
+
+        $('#loginBoard').html('<h2>Välkommen '+spelare1+' och '+spelare2+'!</h2><br/>'
+        +'<p><span style="font-size:20px;">VIT: '+spelare1+' </span></p><br/>'
+        +'<p><span style="font-size:20px;">SVART: '+spelare2+' </span></p><br/>'
+        +'Felmeddelande: <span id="errorMsg"> </span>'
+        );
+        $('#player1').html(spelare1 + " - Vit");
+        $('#player2').html(spelare2 + " - Svart");
+        });
+        $('#startBtn').hide();
+        $(".playerToken1").each(function(i) {
+        $(this).attr('id', 'playerToken1' + (i + 1));
+        });
+        //PlayerToken 2 GE ID!
+        $(".playerToken2").each(function(i) {
+        $(this).attr('id', 'playerToken2' + (i + 1));
+        });
+        updateBoard();
+        checkMouse();
+        console.log('json körs');
+        }else{}
+}
+	
+
+// Notification
+
+$('.notification').hide();
+summonDaPaperclip();
+
+function summonDaPaperclip () {
+	$('.notification').fadeIn(3000);
+	$('#bubbleText').text("Välkommen till detta Draughts-spel, lycka till!");
+}
+
+function randomMessageWhite () {
+	var messageWhite = new Array(
+					"Jag hatar mitt jobb..."
+					,"Hej! Jag tänkte bara berätta att det nu är vits tur att spela."
+					,"Goddag, nu är det vits tur att flytta på pjäserna, lycka till!"
+					,"Fråga mig om du behöver hjälp! Oj, nu är det vits tur..."
+					,"Hawaiis nationalfisk heter: Humuhumu- nukunukuapua'a"
+					,"Behöver du hjälp? Fråga mig!"
+					,"Visste du att en snigel kan sova i tre år?"
+					,"Visste du att en struts öga är större än dess hjärna?"
+					,"Visste du att alla isbjörnar är vänsterhänta?"
+					,"Visste du att en krokodil inte kan sticka ut tungan?"
+					,"Visste du att en ankas kvackande inte ekar?"
+					);
+	$('.notification').show();
+	var white = messageWhite[Math.floor(Math.random() * 11)];
+	$('#bubbleText').text(white);
+}
+
+function randomMessageBlack () {
+	var messageBlack = new Array(
+					"Jag hatar mitt jobb..."
+					,"Hej! Jag tänkte bara berätta att det nu är svarts tur att spela."
+					,"Goddag, nu är det svarts tur att flytta på pjäserna, lycka till!"
+					,"Fråga mig om du behöver hjälp! Oj, nu är det svarts tur..."
+					,"Visste du att man nyser i en hastighet av 160km/tim?"
+					,"Visste du att första bokstaven i Hej är H?"
+					,"Visste du att champinjoner bara innehåller 0,2% fett?"
+					,"Visste du att man tillbringar 6 månader av sitt liv på toaletten?"
+					,"Visste du att fjärilar smakar med fötterna?"
+					,"Visste du att alla isbjörnar är vänsterhänta?"
+					,"Visste du att 100 personer dör årligen av att ha satt en kulspets- penna i halsen?"
+					);
+	$('.notification').show();
+	var black = messageBlack[Math.floor(Math.random() * 11)];
+	$('#bubbleText').text(black);
 }

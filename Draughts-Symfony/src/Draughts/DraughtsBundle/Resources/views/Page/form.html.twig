@@ -2,12 +2,15 @@
 {% extends 'DraughtsBundle:Page:index.html.twig' %}
 
 {% block sidebar %}
+<div id="loginWrapper">
+	<div id="loginBoard">
 		<h2>Välkommen {{player1}} och {{player2}}</h2>
-		<p><span style="font-size:2em; color: blue;">{{player1}}</span> har vita pjäser</p>
-		<p><span style="font-size:2em; color: red;">{{player2}}</span> har svarta pjäser</p>
-		<p>Spelid: <span style="font-size:2em; color: white;">{{id}}</span>(spara ditt ID) </p>
+		<p><span style="font-size:2em; color: blue;">{{player1}}</span><br/> har vita pjäser<br/></p>
+		<p><span style="font-size:2em; color: red;">{{player2}}</span><br/> har svarta pjäser<br/></p>
+		Felmeddelande: <span id="errorMsg"> </span><br/>
+		</div>
 		<button id="startBtn">Start</button>
-		Felmeddelande: <span id="errorMsg"> </span>
+</div>
 {% endblock %}
   
  {% block javascripts %}

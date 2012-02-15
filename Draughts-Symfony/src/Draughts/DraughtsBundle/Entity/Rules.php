@@ -168,6 +168,7 @@ class Rules {
 			$this->upRight = null;
 			if (($this->idTester - 7 >= 1) || ($this->idTester - 9 >= 1)) {
 				if (($this->downLeftSqlArr['playerId'] == '1') || ($this->downLeftSqlArr['playerId'] == '11')) {
+					echo "getMovesWhite fail!";
 					$this->downLeft = null;
 				} else {}
 				
@@ -340,7 +341,7 @@ class Rules {
 					, $this->upRight);
 				} else if (($positionId == 64) || ($positionId == 48) || ($positionId == 32) || ($positionId == 16)) {
 					$this->downLeft = null;
-					$this->upRight  = null;
+					$this->upLeft  = null;
 					$this->checkSecondToken($playerToken, $positionId, $this->downLeft, $this->downRight, $this->upLeft
 					, $this->upRight);
 				} else {
@@ -372,7 +373,7 @@ class Rules {
 					, $this->upRight);
 				} else if (($positionId == 64) || ($positionId == 48) || ($positionId == 32) || ($positionId == 16)) {
 					$this->downLeft = null;
-					$this->upRight  = null;
+					$this->upLeft  = null;
 					$this->checkSecondToken($playerToken, $positionId, $this->downLeft, $this->downRight, $this->upLeft
 					, $this->upRight);
 				} else {

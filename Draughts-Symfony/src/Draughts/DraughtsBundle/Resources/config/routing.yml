@@ -41,13 +41,13 @@ DraughtsBundle_databaseDelete:
         _method:  GET
         
 DraughtsBundle_game:
-    pattern: /app_dev.php/game
+    pattern: /game
     defaults: { _controller: DraughtsBundle:Game:game }
     requirements:
         _method: GET
         
 DraughtsBundle_board:
-    pattern: /app_dev.php/board
+    pattern: /board
     defaults: { _controller: DraughtsBundle:Board:board }
     requirements:
         _method: GET        

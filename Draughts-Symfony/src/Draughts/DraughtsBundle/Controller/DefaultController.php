@@ -72,29 +72,30 @@ class DefaultController extends Controller
 	
 	public function formAction()  //Hämta och lägger användarnamn och id i databasen
 {
-	$player1 = $_POST['form']['player1'];
-	$player2 = $_POST['form']['player2'];
-	$id = $_POST['form']['id'];
-	/*return $this->render('DraughtsBundle:Page:form.html.twig', array(
-		'player1' => $player1,
-		'player2' => $player2,
-		'id'=>$id
-	));
-	*/
-	        $current_game = new theGame(); // En instans av classen theGame som finss i TheGame filen
-			$current_game -> createTheGame($player1, $player2, $id); // Hämta metoden creatTheGame som finns i Enquiery
-	
-			$em = $this -> getDoctrine()-> getEntityManager(); //Anslutning till database med hjälp av doctrine
-			$em -> persist($current_game); // Lägger allt i database
-			$em -> flush(); // Ordna gör i ordning allt i database        
-	        $this -> id = $current_game -> getId();   
-	//	}
-        return $this -> render('DraughtsBundle:Page:form.html.twig', array(
-        	'player1' => $player1,
-			'player2' => $player2,
-			'id'=>$id
-    	));    
-	}
+	if (isset($_GET['player1']) && (isset($_GET['player2'])) ){
+$player1 = $_GET['player1'];
+$player2 = $_GET['player2'];
+}
+$current_game = new theGame(); // En instans av classen theGame som finss i TheGame filen
+$current_game -> createTheGame($player1, $player2); // Hämta metoden creatTheGame som finns i Enquiery
+
+$em = $this -> getDoctrine()-> getEntityManager(); //Anslutning till database med hjälp av doctrine
+$em -> persist($current_game); // Lägger allt i database
+$em -> flush(); // Ordna gör i ordning allt i database
+
+// }
+$this->render('DraughtsBundle:Page:form.html.twig', array(
+'player1' => $player1,
+'player2' => $player2
+
+));
+return new Response(json_encode(array
+(
+'player1'=>$player1
+,'player2'=>$player2
+)
+)
+);}
 
 	public function showAction($id) {
 		
