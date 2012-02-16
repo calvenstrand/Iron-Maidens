@@ -199,7 +199,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         not_DraughtsBundle_databaseDelete:
 
         // DraughtsBundle_game
-        if ($pathinfo === '/app_dev.php/game') {
+        if ($pathinfo === '/game') {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
                 goto not_DraughtsBundle_game;
@@ -209,7 +209,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         not_DraughtsBundle_game:
 
         // DraughtsBundle_board
-        if ($pathinfo === '/app_dev.php/board') {
+        if ($pathinfo === '/board') {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
                 goto not_DraughtsBundle_board;

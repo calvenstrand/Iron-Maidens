@@ -37,7 +37,7 @@ class Rules {
 	
 	// Funktion för att hämta gameboarden
 	public function gameBoardQuery () {
-		mysql_connect('localhost', 'root', 'pocxtr') or die ('Error'.mysql_error());
+		mysql_connect('localhost', 'root', '') or die ('Error'.mysql_error());
 		mysql_select_db('draughts') or die ('Error'.mysql_error());;	
 		$this->checkIfGoRoyal();
 		$query = "SELECT * FROM draughts WHERE playerId";
@@ -50,7 +50,7 @@ class Rules {
 	}
 	
 	public function connectDbSelectDraughts(){
-		mysql_connect('localhost', 'root', 'pocxtr') or die ('Error'.mysql_error());
+		mysql_connect('localhost', 'root', '') or die ('Error'.mysql_error());
 		mysql_select_db('draughts') or die ('Error'.mysql_error());
 	}
 	

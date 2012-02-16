@@ -155,6 +155,7 @@ function moveToken() {
 			}else if(works === 0 ){
 				$('#errorMsg').text('Du kan inte gå dit');
 				$('#errorMsg').fadeIn(1000)
+				$('#errorMsg').append("<audio id ='sound' src='/IronsActual/Iron-Maidens/Draughts-Symfony/web/error.wav' hidden='false' autoplay='autoplay'></audio>");
 				setTimeout(function (e) {
 					$('#errorMsg').fadeOut(1000);
 				}, 2000);
@@ -263,7 +264,7 @@ function updateBoard () {
 }
 
 $('#startBtn').click(function (e) {
-			$('#startBtn').fadeOut(1000);
+			
 	
         console.log('knapp funkar');
         bindForm();
@@ -291,7 +292,7 @@ $('#startBtn').click(function (e) {
         $('#loginBoard').html('<h2>Välkommen '+spelare1+' och '+spelare2+'!</h2><br/>'
         +'<p><span style="font-size:20px;">VIT: '+spelare1+' </span></p><br/>'
         +'<p><span style="font-size:20px;">SVART: '+spelare2+' </span></p><br/>'
-        +'Felmeddelande: <span id="errorMsg"> </span>'
+        +'Felmeddelande: <span style="font-size: 16pt; color: red;" id="errorMsg"><audio id="ljud"></audio> </span>'
         );
         $('#player1').html(spelare1 + " - Vit");
         $('#player2').html(spelare2 + " - Svart");

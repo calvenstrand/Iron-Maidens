@@ -192,12 +192,12 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function getDraughtsBundle_gameRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\GameController::gameAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/app_dev.php/game',  ),));
+        return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\GameController::gameAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/game',  ),));
     }
 
     private function getDraughtsBundle_boardRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\BoardController::boardAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/app_dev.php/board',  ),));
+        return array(array (), array (  '_controller' => 'Draughts\\DraughtsBundle\\Controller\\BoardController::boardAction',), array (  '_method' => 'GET',), array (  0 =>   array (    0 => 'text',    1 => '/board',  ),));
     }
 
     private function getDraughtsBundle_flushRouteInfo()
