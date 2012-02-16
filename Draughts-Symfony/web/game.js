@@ -154,11 +154,11 @@ function moveToken() {
 				updateBoard();	
 			}else if(works === 0 ){
 				$('#errorMsg').text('Du kan inte gå dit');
-				$('#errorMsg').fadeIn(1000)
+				$('#errorMsg').fadeIn(500)
 				$('#errorMsg').append("<audio id ='sound' src='/IronsActual/Iron-Maidens/Draughts-Symfony/web/error.wav' hidden='false' autoplay='autoplay'></audio>");
 				setTimeout(function (e) {
-					$('#errorMsg').fadeOut(1000);
-				}, 2000);
+					$('#errorMsg').fadeOut(500);
+				}, 3500);
 					
 				
 				console.log('Du kan inte gå dit');
