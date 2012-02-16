@@ -8,40 +8,13 @@ var mouseOverId;
 var isRed;
 var moveId1;
 var moveId2;
-var moveId3;
-var moveId4;
-var moveWithId1;
-var moveWithId2;
-var deleteId1 = null;
-var deleteId2 = null;
-var deleteId3 = null;
-var	deleteId4 = null;
-var hasChild2;
-var hasChild1;
-var idRight;
-var idLeft;
 var zeAlert;
-var idRightBack;
-var idLeftBack;
-var tempTarget;
 var nextPlayerTurn;
 var works;
 var testArray;
-// The first player
-var player1 = {
-    name: 'Player 1',
-    color: 'playerToken1',
-    wins: 0
-    };
-// The second player
-var player2 = {
-    name: 'Player 2',
-    color: 'playerToken2',
-    wins: 0
-	};
-var players = [player1, player2];
 var current_player = 0;
-$('#errorMsg').hide();
+
+
 //Funktionen som disablar klick på motspelarens pjäser
 function disable(){
 	if(current_player == '0'){
@@ -54,7 +27,7 @@ function disable(){
 			$(this).off('click');
 		});
 		$(disableP2k).each(function(i) {
-		//Stäng av bind på motspelarens pjäser
+		//Stäng av bind på motspelarens kungar
 		$(this).off('click');
 		});
 	} else if(current_player == '1'){
@@ -67,129 +40,99 @@ function disable(){
 			$(this).off('click', selectToken);
 		});
 		$(disableP1k).each(function(i) {
-			//Stäng av bind på motspelarens pjäser
+			//Stäng av bind på motspelarens kungar
 			$(this).off('click', selectToken);
 		});
-	}else{ console.log('sug');}
+	}else{}
 }
 
 //Funktion för att re-binda alla till selectToken
 
 function bindAllSelectToken(){
-	current_player;
 	if(current_player == '0'){
-		//$('.gameBox1').parent().off('click');
-		//$('.gameBox1').off('click', moveToken);
 		$('.playerToken1').off('click');
 		$('.pt1k').off('click');
 		$('.playerToken1').parent().bind('click', selectToken);	
 		$('.pt1k').parent().bind('click', selectToken);	
 	}
 	if(current_player == '1'){
-		//$('.gameBox1').off('click', moveToken);
 		$('.playerToken2').off('click');
 		$('.pt2k').off('click');
 		$('.playerToken2').parent().bind('click', selectToken);
 		$('.pt2k').parent().bind('click', selectToken);	
-		//$('.gameBox1').parent().off('click');
 	}
 	
-		//Sätt tillbaka binden till SelectToken
-		//Bind alla till SelectToken med funktionen
-	//disableOpponent();
 }
-// startkollningen
+// Funktion för att markera spelpjäs
 function selectToken() {
-	console.log('Du klickade på: ' + mouseOverId);
-	//console.log("Klick på spelpjäs.");	
+	// Start
+	//Sätter id på det man tryckt på	
 	target = $(this).attr('id');
 	thisTarget = ('#' + target);
-	//Ajax variabel som berättar klassen för json hämtningen
-	//Kolla om isRed är falskt
-	if(!isRed) {
-		//Get json object, 
-		//Eventuellt baka in dessa i bindallSelectToken o göra om den till en bindfunktion för alla.
+	//Kolla om isRed är sant, isf. gör bakgrunden vit och binda alla till selecttoken
+	if(isRed) {
+		//Sätt bakgrunden till vit
+		$(thisTarget).css('background', '');
+		//binda alla
+		bindAllSelectToken();
+		//
+		isRed = false;
+	}
+	
+	else if(!isRed) {
 		$('.gameBox1').off('click');
 		$('.gameBox1').bind('click', moveToken);
-		$(thisTarget).off('click', moveToken);
+		$(thisTarget).off('click');
 		$(thisTarget).bind('click', selectToken);
 		//Sätt bakgrunden till red
 		$(thisTarget).css('background', 'red');
-		//Sätt isRed till true
+		//
 		isRed = true;
-		
-		// Kolla om isRed är sant
 	}
-	else if(isRed) {
-		
-		bindAllSelectToken();
-		//Sätt bakgrunden till vit
-		$(thisTarget).css('background', '');
-		//Sätt isRed till falskt
-		isRed = false;
-		//Stäng av tidigare binds på gamebox och sätt den till SelectToken ist.
-		//disable();
-		
-		
-		//disable();
-	} else {}
-
+	
+ 
 }
 //SLUT SelectToken
+
 function moveToken() {
-	//Kolla om isred är sann och att man har en target att sno ifrån, och flytta
+	//funktion för att flytta spelpjäs och eventuellt äta upp motståndarpjäs
 	if(isRed) {
-		//Flytta div inuti target till mouseover targeten
+		//Jsonobjekt för att se om man kan gå och/eller ta
 		$.getJSON("app_dev.php/game?target="+target+"&tryTake="+mouseOverId, function(data){
 			//översätt jsonobjektet till 2 möjliga drag
 			works = data.works;
 			moveId2 = data.tryTake;
 			nextPlayersTurn = data.nextPlayersTurn;
-			//$('#' + target + '>div').appendTo($('#' + moveId1));
-			//$('#' + moveId2 + '>div').remove();		
-			//console.log ('next turn'+nextPlayerTurn);	
 			current_player = nextPlayersTurn;
 			if (works === 1){
 				console.log('Du gick till: ' + mouseOverId);
 				updateBoard();	
 			}else if(works === 0 ){
+				//Error Message
 				$('#errorMsg').text('Du kan inte gå dit');
 				$('#errorMsg').fadeIn(500)
 				$('#errorMsg').append("<audio id ='sound' src='/IronsActual/Iron-Maidens/Draughts-Symfony/web/error.wav' hidden='false' autoplay='autoplay'></audio>");
 				setTimeout(function (e) {
 					$('#errorMsg').fadeOut(500);
 				}, 3500);
-					
-				
-				console.log('Du kan inte gå dit');
-			}
-			
+			}	
 		});
-		
 		$(thisTarget).css('background', '');
-		//bindAllSelectToken();
 		isRed = false;
-		//sätt nästa spelares tur
-		
-	
-	}
-	//om det skulle bli grinigt och isred inte är sann, gå tillbaka till SelectToken
-	else if(!isRed) {
-		$(thisTarget).off('click', selectToken);
-		$(thisTarget).click(selectToken);
 	}
 	//Slut moveToken
-	
 }
 
-// Start BIND STARTBUTTON
 function updateBoard () {
-	console.log('Uppdaterar brädet');
-	$('.playerToken1').remove();
-	$('.playerToken2').remove();
-	$('.pt1k').remove();
-	$('.pt2k').remove();
+	//Funktion för att uppdatera brädet
 	$.getJSON('app_dev.php/board', function (data) {
+		//json objekt för att hämta hur brädet ser ut
+		//Börja med att ta bort nuvarande pjäser
+		$('.playerToken1').remove();
+		$('.playerToken2').remove();
+		$('.pt1k').remove();
+		$('.pt2k').remove();
+		//Omvandla till array och kasta ut nya pjäser
 		zeAlert = data.jason;
 		var playerToken1l = '<div class="playerToken1"></div>';
 		var playerToken2l = '<div class="playerToken2"></div>';
@@ -214,16 +157,15 @@ function updateBoard () {
 				$('.p1s').append(pt2k);
 			}
 		}
-		
+		//disabla alla och binda dens tur det är
 		disable();
 		bindAllSelectToken();
-		
+		//Paperclip message
 		if (current_player == 0) {
 			randomMessageWhite();
 		} else if (current_player == 1) {
 			randomMessageBlack();
-		}
-		
+		}	
 		whiteArray = new Array();
 		for (var x in zeAlert) {
 			if (((zeAlert[x].keys == '0') && (zeAlert[x].values == '1')) || ((zeAlert[x].keys == '0') && (zeAlert[x].values == '11'))) {
@@ -240,8 +182,7 @@ function updateBoard () {
 				location.reload();
 			});
 			$('#startBtn').fadeIn(1000);
-		}
-		
+		}	
 		blackArray = new Array();
 		for (var x in zeAlert) {
 			if (((zeAlert[x].keys == '0') && (zeAlert[x].values == '2')) || ((zeAlert[x].keys == '0') && (zeAlert[x].values == '22'))) {
@@ -264,21 +205,19 @@ function updateBoard () {
 }
 
 $('#startBtn').click(function (e) {
-			
-	
-        console.log('knapp funkar');
+	//Binda startknapp
         bindForm();
         e.preventDefault();
         });
-        //funktion för att kolla mouseover ID
         function checkMouse() {
+        //funktion för att kolla mouseover ID
         $('.gameBox1').mouseover(function() {
         mouseOverId = $(this).attr("id");
         });
         //Slut CHECKMOUSE
         }
-
         function bindForm(){
+        //Funktion för att preventa default på formen och köra jqueryn ist.
         $('#formId').submit(function(e) {
         e.preventDefault();
         });
@@ -288,11 +227,11 @@ $('#startBtn').click(function (e) {
         $.getJSON("app_dev.php/form?player1="+name1+"&player2="+name2, function (formData) {
         var spelare1 = formData.player1;
         var spelare2 = formData.player2;
-
+		//Leverera ut en ny loginboard
         $('#loginBoard').html('<h2>Välkommen '+spelare1+' och '+spelare2+'!</h2><br/>'
-        +'<p><span style="font-size:20px;">VIT: '+spelare1+' </span></p><br/>'
-        +'<p><span style="font-size:20px;">SVART: '+spelare2+' </span></p><br/>'
-        +'Felmeddelande: <span style="font-size: 16pt; color: red;" id="errorMsg"><audio id="ljud"></audio> </span>'
+        	+'<p><span style="font-size:20px;">VIT: '+spelare1+' </span></p><br/>'
+       		+'<p><span style="font-size:20px;">SVART: '+spelare2+' </span></p><br/>'
+       		+'Felmeddelande: <span style="font-size: 16pt; color: red;" id="errorMsg"><audio id="ljud"></audio> </span>'
         );
         $('#player1').html(spelare1 + " - Vit");
         $('#player2').html(spelare2 + " - Svart");
@@ -310,8 +249,6 @@ $('#startBtn').click(function (e) {
         console.log('json körs');
         }else{}
 }
-	
-
 // Notification
 
 $('.notification').hide();
